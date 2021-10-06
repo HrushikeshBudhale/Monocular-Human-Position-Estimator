@@ -6,3 +6,6 @@
 ### Algorithm & Technique:
 - We are relying on an existing image processing library called openpose for estimation of key points of humans in frame. This will make our algorithm prone to human’s orientation or pose.
 - We are developing a distance estimation algorithm and tracking algorithm to meet the requirements of the project
+
+### Product Backlog / Timeline
+- https://docs.google.com/spreadsheets/d/17sCbcyRAK_iICerbrynAMN3AzTnqCh2DHqdB_0Gs4jU/edit?usp=sharing
