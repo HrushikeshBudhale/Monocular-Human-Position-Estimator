@@ -3,7 +3,7 @@
 ### Project Overview:
 - This project aims to design a human obstacle detector and tracker for Acme Robotics. Considering that the robot for which we are developing the module is a mobile robot working in a manufacturing environment alongside humans, the detector part of the perception module will help improve the safety of the workplace by enabling the robot to detect a human. The tracker part will help to identify the direction in which the human is moving. This will enable the path planning module of the robot to develop a modified trajectory to reach the goal . The perception module will also interact with the transmission system of the robot to reduce the robot’s speed after detection of a human. 
 
-![UML Diagram](https://drive.google.com/file/d/17Rac1ahaEw63gzfFXLIlmjWUs3yBvO14/view?usp=sharing)
+![UML Diagram](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/Phase0_UML.png)
 
 ### Video link
 - Project Proposal Video - https://youtu.be/fk__0-6L_vQ
