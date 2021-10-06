@@ -12,3 +12,6 @@
 
 ### Project Presentation
 - https://docs.google.com/presentation/d/1Ji1mKLTuNHvZGET_uXD7xH9T9AOzvHX4q5O1YVO4FIk/edit?usp=sharing
+
+### References
+- Openpose library - https://github.com/CMU-Perceptual-Computing-Lab/openpose
