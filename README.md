@@ -9,3 +9,6 @@
 
 ### Product Backlog / Timeline
 - https://docs.google.com/spreadsheets/d/17sCbcyRAK_iICerbrynAMN3AzTnqCh2DHqdB_0Gs4jU/edit?usp=sharing
+
+### Project Presentation
+- https://docs.google.com/presentation/d/1Ji1mKLTuNHvZGET_uXD7xH9T9AOzvHX4q5O1YVO4FIk/edit?usp=sharing
