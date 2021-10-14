@@ -7,6 +7,9 @@
 
 ![UML Diagram](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/Phase0_UML.png)
 
+### Activity Diagram
+![ACTIVITY DIAGRAM](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/project1_808x_activity_diagram-Page-1.drawio.png)
+
 ### Video link
 - Project Proposal Video - https://youtu.be/fk__0-6L_vQ
 
