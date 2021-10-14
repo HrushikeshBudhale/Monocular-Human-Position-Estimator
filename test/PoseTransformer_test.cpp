@@ -1,14 +1,13 @@
 /**
- * @file test.cpp
- * @author your name (you@domain.com)
+ * @file PoseTransformer_test.cpp
+ * @author Driver: Abhijit Mahalle, Navigator: Hrushikesh Budhale
  * @brief 
  * @version 0.1
- * @date 2021-10-13
+ * @date 2021-10-14
  * 
  * @copyright Copyright (c) 2021
  * 
  */
-
 #include <gtest/gtest.h>
 #include "../include/PoseTransformer.hpp"
 #include <eigen3/Eigen/Dense>
