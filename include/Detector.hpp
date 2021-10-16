@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef DETECTOR_HPP_
-#define DETECTOR_HPP_
+#ifndef INCLUDE_DETECTOR_HPP_
+#define INCLUDE_DETECTOR_HPP_
 
 #include <vector>
 #include <string>
@@ -24,6 +24,7 @@ class Detector {
     explicit Detector(int);
     explicit Detector(std::string);
     std::vector<cv::Rect> get_detections();
+    std::vector<cv::Point2d> get_centroid();
     void show_output();
     ~Detector();
  private:
@@ -34,5 +35,5 @@ class Detector {
     std::vector<cv::Rect> detections;
 };
 
-#endif  // DETECTOR_HPP_
+#endif  // INCLUDE_DETECTOR_HPP_
 

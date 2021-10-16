@@ -15,7 +15,9 @@
  * @brief Default constructor for Detector
  * 
  */
-Detector::Detector() {}
+Detector::Detector() {
+    
+}
 
 /**
  * @brief Explicit constructor for Detector
@@ -42,6 +44,16 @@ Detector::Detector(std::string file_path) {
 std::vector<cv::Rect> Detector::get_detections() {
     std::vector<cv::Rect> v;
 
+    return v;
+}
+
+/**
+ * @brief Function to compute centroid of bounding boxes
+ * 
+ * @return std::vector<cv::Point2d> 
+ */
+std::vector<cv::Point2d> Detector::get_centroid() {
+    std::vector<cv::Point2d> v;
     return v;
 }
 
