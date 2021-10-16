@@ -5,6 +5,8 @@ add_executable(
     main.cpp
     PoseTransformer_test.cpp
     ../app/PoseTransformer.cpp
+    ../app/Detector.cpp
+    ../app/HumanDetector.cpp
 )
 
 target_include_directories(cpp-test PUBLIC ../vendor/googletest/googletest/include 
