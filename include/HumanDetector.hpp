@@ -12,6 +12,7 @@
 
 #include <map>
 #include <vector>
+#include <opencv2/highgui.hpp>
 
 /**
  * @brief High level class for detecting humans in robot frame
@@ -20,9 +21,16 @@
 class HumanDetector {
  public:
     HumanDetector();
-    void get_positions();
+    void track_positions();
+    void set_camera_properties(int, int);
+    void set_distance_to_detection_ht_ratio();
 
  private:
-    int detected_people;
-    std::map<int, std::vector<std::vector<double>>> people;
+    std::vector<cv::Point3d> get_3d_position();
+    std::map<int, std::vector<cv::Point3d>> assign_ids();
+    double get_depth_estimate(cv::Rect);
+    std::map<int, std::vector<cv::Point3d>> people;
+    int img_height;  // 480;
+    int img_width;  // 640;
+    double distance_to_detection_ht_ratio;  // 2/img_height;
 };
