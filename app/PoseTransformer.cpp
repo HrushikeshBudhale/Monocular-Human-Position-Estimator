@@ -98,8 +98,11 @@ void PoseTransformer::set_robot_frame(std::vector<double> robotFrame_) {
  */
 std::vector<double> PoseTransformer::get_pose_in_robot_frame(
                             std::vector<double> humanPosition) {
-    std::vector<double> newPose = {0, 0, 0};
-    // todo: Add logic to transform a coordinate from camera frame to robot
-    // frame
-    return newPose;
+    Eigen::Matrix<double, 4, 1> new_position;
+    Eigen::Matrix<double, 4, 1> position = {humanPosition[0],
+                                            humanPosition[1],
+                                            humanPosition[2],
+                                            1};
+    new_position = robotFrame.inverse() * camFrame * position;
+    return {new_position[0], new_position[1], new_position[2]};
 }
