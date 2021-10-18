@@ -68,6 +68,7 @@ This generates a index.html page in the build/coverage sub-directory that can be
 
 ### Video link
 - [Project Proposal Video](https://youtu.be/fk__0-6L_vQ)
+- [Phase1 Demo](https://youtu.be/0RSSTZF7N8k)
 
 ### External Dependencies
 - [Opencv](https://github.com/opencv/opencv)
