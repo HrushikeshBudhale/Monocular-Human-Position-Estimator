@@ -28,7 +28,7 @@ Detector::Detector() {
  * @param camera_id int : camera id
  */
 Detector::Detector(int camera_id) {
-    cv::VideoCapture camera = cv::VideoCapture();
+    camera = cv::VideoCapture();
     camera.open(camera_id);
     fps = camera.get(cv::CAP_PROP_FPS);
     hog_detector.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
@@ -60,7 +60,7 @@ void Detector::detect_humans() {
         std::cout << "\n Cannot read the frame. \n";
         return;
     }
-    cv::resize(frame, frame, cv::Size(), 0.3, 0.3);
+    
     hog_detector.detectMultiScale(frame, detections);
 }
 
@@ -88,15 +88,25 @@ std::vector<cv::Point2d> Detector::get_centroid() {
 }
 
 /**
- * @brief shows detector output with bouding boxes around detected person
+ * @brief Functions that displays output
  * 
+ * @return true 
+ * @return false 
  */
-void Detector::show_output() {
+bool Detector::show_output() {
+    bool keep_showing = true;
+    for (auto& detection : detections) {
+        resize_bounding_box(&detection);
+        cv::rectangle(frame, detection.tl(), detection.br(),
+                        cv::Scalar(255, 0, 0), 2);
+    }
     cv::imshow("Frame1", frame);
     int key = cv::waitKey(static_cast<int>(1000.0/fps));
     if (key == 27 || static_cast<char>(key) == 'q') {
         cv::destroyAllWindows();
+        keep_showing = false;
     }
+    return keep_showing;
 }
 
 /**
@@ -105,9 +115,9 @@ void Detector::show_output() {
  * @param boxPtr Pointer to cv::Rect object created after detections
  */
 void Detector::resize_bounding_box(cv::Rect* boxPtr) {
-    boxPtr->x += static_cast<int>(boxPtr->width*0.5);
-    boxPtr->width = static_cast<int>(boxPtr->width*0.8);
-    boxPtr->y += static_cast<int>(boxPtr->height*0.3);
+    boxPtr->x += static_cast<int>(boxPtr->width*0.15);
+    boxPtr->width = static_cast<int>(boxPtr->width*0.7);
+    boxPtr->y += static_cast<int>(boxPtr->height*0.1);
     boxPtr->height = static_cast<int>(boxPtr->height*0.8);
 }
 
