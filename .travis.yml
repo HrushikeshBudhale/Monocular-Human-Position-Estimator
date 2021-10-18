@@ -1,37 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
-#Name
-@abhi-mah 
-HrushikeshBudhale
-/
-Monocular-Human-Position-Estimator
-Public
- Watch 
-1
- Star0 Fork1
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
- development 
-Monocular-Human-Position-Estimator/.travis.yml
-Go to file
-@HrushikeshBudhale
-HrushikeshBudhale update travis
-Latest commit 981c262 6 minutes ago
- History
- 1 contributor
-42 lines (38 sloc)  939 Bytes
-RawBlame
-  
 # We need a decent ubuntu distro
 sudo: required
 dist: xenial
@@ -74,16 +40,3 @@ after_success:
 
 notifications:
   email: false
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
