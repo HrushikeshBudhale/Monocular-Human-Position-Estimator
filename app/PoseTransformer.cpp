@@ -18,7 +18,8 @@
  * 
  */
 PoseTransformer::PoseTransformer() {
-    // tudo: Initialize robotFrame and camera frame as identity matrix
+    robotFrame = Eigen::Matrix<double, 4, 4>::Identity();
+    camFrame = Eigen::Matrix<double, 4, 4>::Identity();
 }
 
 /**
@@ -43,7 +44,7 @@ Eigen::Matrix3d PoseTransformer::get_rotation_matrix(
  *                  {x, y, z, roll, pitch, yaw} in meter and radian
  */
 void PoseTransformer::set_cam_frame(std::vector<double> camFrame_) {
-    // todo: Add logic to create 4x4 homogenous transformation matrix 
+    // todo: Add logic to create 4x4 homogenous transformation matrix
     //          from given x, y, z, roll, pitch, yaw values.
 }
 
@@ -55,7 +56,7 @@ void PoseTransformer::set_cam_frame(std::vector<double> camFrame_) {
  *                      {x, y, z, roll, pitch, yaw} in meter and radian
  */
 void PoseTransformer::set_robot_frame(std::vector<double> robotFrame_) {
-    // todo: Add logic to create 4x4 homogenous transformation matrix 
+    // todo: Add logic to create 4x4 homogenous transformation matrix
     //          from given x, y, z, roll, pitch, yaw values.
 }
 
@@ -70,7 +71,7 @@ void PoseTransformer::set_robot_frame(std::vector<double> robotFrame_) {
 std::vector<double> PoseTransformer::get_pose_in_robot_frame(
                             std::vector<double> humanPosition) {
     std::vector<double> newPose = {0, 0, 0};
-    // todo: Add logic to transform a coordinate from camera frame to robot 
+    // todo: Add logic to transform a coordinate from camera frame to robot
     // frame
     return newPose;
 }
