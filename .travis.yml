@@ -1,0 +1,89 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@abhi-mah 
+HrushikeshBudhale
+/
+Monocular-Human-Position-Estimator
+Public
+ Watch 
+1
+ Star0 Fork1
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+ development 
+Monocular-Human-Position-Estimator/.travis.yml
+Go to file
+@HrushikeshBudhale
+HrushikeshBudhale update travis
+Latest commit 981c262 6 minutes ago
+ History
+ 1 contributor
+42 lines (38 sloc)  939 Bytes
+RawBlame
+  
+# We need a decent ubuntu distro
+sudo: required
+dist: xenial
+
+# Modern cpp settings from
+#  http://genbattle.bitbucket.org/blog/2016/01/17/c++-travis-ci/
+language: cpp
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - george-edison55-precise-backports
+          packages:
+            - g++-5
+            - cmake
+            - cmake-data
+      env: COMPILER=g++-5
+
+before_install:
+  - pip install --user cpp-coveralls
+install:
+  - sudo apt-get install -y -qq lcov
+  - sudo apt-get install -y libeigen3-dev
+  - sudo apt install python-opencv
+script:
+  - export CXX=$COMPILER;
+  - mkdir build
+  - cd build
+  - cmake -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ../
+  - make
+  - make code_coverage
+  - test/cpp-test
+
+after_success:
+  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
+
+notifications:
+  email: false
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
