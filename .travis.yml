@@ -25,13 +25,12 @@ before_install:
 install:
   - sudo apt-get install -y -qq lcov
   - sudo apt-get install -y libeigen3-dev
-  - sudo apt install python-opencv
+  - sudo apt-get install libopencv-dev
 script:
   - export CXX=$COMPILER;
   - mkdir build
   - cd build
-#   - cmake -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ../
-  - cmake ..
+  - cmake -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ../
   - make
   - make code_coverage
   - test/cpp-test
