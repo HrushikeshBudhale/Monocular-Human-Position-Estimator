@@ -31,9 +31,23 @@ PoseTransformer::PoseTransformer() {
  */
 Eigen::Matrix3d PoseTransformer::get_rotation_matrix(
                                 std::vector<double> angles) {
-    Eigen::Matrix3d obj;
-    // todo: add logic to create roatation matrix from 3 angles along x, y, z
-    return obj;
+    Eigen::Matrix3d rot_x;
+    Eigen::Matrix3d rot_y;
+    Eigen::Matrix3d rot_z;
+
+    rot_x <<    1,                   0,                    0,
+                0, std::cos(angles[0]), -std::sin(angles[0]),
+                0, std::sin(angles[0]),  std::cos(angles[0]);
+
+    rot_y <<     std::cos(angles[1]), 0,  std::sin(angles[1]),
+                                   0, 1,                    0,
+                -std::sin(angles[1]), 0,  std::cos(angles[1]);
+
+    rot_z <<    std::cos(angles[2]), -std::sin(angles[2]), 0,
+                std::sin(angles[2]),  std::cos(angles[2]), 0,
+                                  0,                    0, 1;
+
+    return rot_x * rot_y * rot_z;
 }
 
 /**
