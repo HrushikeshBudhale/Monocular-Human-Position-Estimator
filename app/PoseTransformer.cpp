@@ -58,8 +58,15 @@ Eigen::Matrix3d PoseTransformer::get_rotation_matrix(
  *                  {x, y, z, roll, pitch, yaw} in meter and radian
  */
 void PoseTransformer::set_cam_frame(std::vector<double> camFrame_) {
-    // todo: Add logic to create 4x4 homogenous transformation matrix
-    //          from given x, y, z, roll, pitch, yaw values.
+    Eigen::Matrix4d transformation_m = Eigen::Matrix4d::Zero(4, 4);
+    Eigen::Matrix3d rot_m = get_rotation_matrix({camFrame_[3], camFrame_[4],
+                                                camFrame_[5]});
+    transformation_m.block<3, 3>(0, 0) = rot_m;
+    transformation_m(0, 3) = camFrame_[0];
+    transformation_m(1, 3) = camFrame_[1];
+    transformation_m(2, 3) = camFrame_[2];
+    transformation_m(3, 3) = 1;
+    camFrame << transformation_m;
 }
 
 /**
