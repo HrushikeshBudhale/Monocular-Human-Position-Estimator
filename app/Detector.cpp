@@ -19,7 +19,7 @@
 Detector::Detector() {
     camera = cv::VideoCapture();
     camera.open(0);
-    fps = camera.get(cv::CAP_PROP_FPS);
+    fps = camera.get(CV_CAP_PROP_FPS);
     hog_detector.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
 }
 
@@ -30,7 +30,7 @@ Detector::Detector() {
 Detector::Detector(int camera_id) {
     camera = cv::VideoCapture();
     camera.open(camera_id);
-    fps = camera.get(cv::CAP_PROP_FPS);
+    fps = camera.get(CV_CAP_PROP_FPS);
     hog_detector.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
 }
 
@@ -42,7 +42,7 @@ Detector::Detector(int camera_id) {
 Detector::Detector(std::string file_path) {
     cv::VideoCapture camera = cv::VideoCapture();
     camera.open(file_path);
-    fps = camera.get(cv::CAP_PROP_FPS);
+    fps = camera.get(CV_CAP_PROP_FPS);
     hog_detector.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
 }
 
