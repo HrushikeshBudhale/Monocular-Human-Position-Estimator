@@ -12,7 +12,7 @@
 
 #include <map>
 #include <vector>
-#include <opencv4/opencv2/highgui.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include "../include/Detector.hpp"
 #include "../include/PoseTransformer.hpp"
 
