@@ -16,6 +16,8 @@
 #include <string>
 #include <opencv2/highgui.hpp>
 #include <opencv2/objdetect.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/videoio.hpp>
 
 
 class Detector {
@@ -23,16 +25,18 @@ class Detector {
     Detector();
     explicit Detector(int);
     explicit Detector(std::string);
+    void detect_humans();
     std::vector<cv::Rect> get_detections();
     std::vector<cv::Point2d> get_centroid();
     void show_output();
     ~Detector();
  private:
     void resize_bounding_box(cv::Rect*);
-    cv::VideoCapture camera = cv::VideoCapture();
+    cv::VideoCapture camera;
     cv::Mat frame;
     cv::HOGDescriptor hog_detector;
     std::vector<cv::Rect> detections;
+    double fps;
 };
 
 #endif  // INCLUDE_DETECTOR_HPP_
