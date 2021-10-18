@@ -17,7 +17,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/videoio/videoio.hpp>
+#include <opencv2/opencv.hpp>
 
 
 class Detector {
@@ -28,7 +28,7 @@ class Detector {
     void detect_humans();
     std::vector<cv::Rect> get_detections();
     std::vector<cv::Point2d> get_centroid();
-    void show_output();
+    bool show_output();
     ~Detector();
  private:
     void resize_bounding_box(cv::Rect*);
