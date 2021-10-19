@@ -9,8 +9,8 @@
  * 
  */
 #include <gtest/gtest.h>
-#include "../include/PoseTransformer.hpp"
 #include <eigen3/Eigen/Dense>
+#include "../include/PoseTransformer.hpp"
 
 TEST(Test_PoseTransformer, test_explicit_constructor) {
   std::vector<double> expected_output = {0, 0, 0};
