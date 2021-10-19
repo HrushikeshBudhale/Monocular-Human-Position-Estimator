@@ -9,8 +9,7 @@
  * 
  */
 
-# ifndef INCLUDE_POSETRANSFORMER_HPP_
-# define INCLUDE_POSETRANSFORMER_HPP_
+#pragma once
 
 #include <eigen3/Eigen/Dense>
 #include <vector>
@@ -27,5 +26,3 @@ class PoseTransformer {
     Eigen::Matrix4d robotFrame;
     Eigen::Matrix4d camFrame;
 };
-
-# endif  // INCLUDE_POSETRANSFORMER_HPP_
