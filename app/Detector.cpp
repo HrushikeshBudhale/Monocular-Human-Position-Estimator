@@ -60,7 +60,7 @@ void Detector::detect_humans() {
         std::cout << "\n Cannot read the frame. \n";
         return;
     }
-    
+
     hog_detector.detectMultiScale(frame, detections);
 }
 
