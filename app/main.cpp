@@ -14,12 +14,12 @@
 #include "../include/HumanDetector.hpp"
 #include "../include/Detector.hpp"
 
-int main() {
-    auto transformer1 = PoseTransformer();
-    auto detector = Detector(0);
+int main(int argc, char *argv[]) {
+    auto transformer = PoseTransformer();
+    auto human_detector = HumanDetector((argc == 2) ? argv[1] : "");
     bool show = true;
-    std::vector<cv::Point2d> centroids;
-    std::vector<double> position;
+    int id;
+    std::vector<double> pos;
     while (show) {
         auto track_output = human_detector.track_positions();
         show = human_detector.show_output();
