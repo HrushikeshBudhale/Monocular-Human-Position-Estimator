@@ -17,10 +17,8 @@
  * 
  */
 Detector::Detector() {
-    camera = cv::VideoCapture();
-    camera.open(0);
-    fps = camera.get(CV_CAP_PROP_FPS);
-    hog_detector.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
+    cv::VideoCapture camera = cv::VideoCapture();
+    multiTracker = cv::MultiTracker::create();
 }
 
 /**
