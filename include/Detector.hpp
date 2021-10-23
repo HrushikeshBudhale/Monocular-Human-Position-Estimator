@@ -17,6 +17,8 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/videoio/videoio.hpp>
+#include <opencv2/tracking/tracking.hpp>
 #include <opencv2/opencv.hpp>
 
 
@@ -25,18 +27,21 @@ class Detector {
     Detector();
     explicit Detector(int);
     explicit Detector(std::string);
-    void detect_humans();
-    std::vector<cv::Rect> get_detections();
-    std::vector<cv::Point2d> get_centroid();
-    bool show_output();
-    ~Detector();
- private:
+    void set_detection_object(cv::InputArray&);
+    cv::Mat detect_object();
+    cv::Point2d get_centroid(cv::Rect);
+    cv::Point2d get_x_and_y(cv::Rect, double);
     void resize_bounding_box(cv::Rect*);
+    ~Detector();
+    double fps;
+    double focal_length, cx, cy;
+    std::vector<cv::Rect> detections;
+ private:
+    void set_camera_properties();
     cv::VideoCapture camera;
     cv::Mat frame;
     cv::HOGDescriptor hog_detector;
-    std::vector<cv::Rect> detections;
-    double fps;
+    cv::Ptr<cv::MultiTracker> multiTracker;
 };
 
 #endif  // INCLUDE_DETECTOR_HPP_
