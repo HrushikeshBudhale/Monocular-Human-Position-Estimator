@@ -1,9 +1,9 @@
 /**
  * @file PoseTransformer.hpp
  * @author Driver: Abhijit Mahalle, Navigator: Hrushikesh Budhale
- * @brief 
- * @version 0.1
- * @date 2021-10-14
+ * @brief Header file for PoseTransformer class
+ *        Class that transforms 3D positions from one frame to another frame.
+ * @version 0.1   @date 2021-10-14
  * 
  * @copyright Copyright (c) 2021
  * 
