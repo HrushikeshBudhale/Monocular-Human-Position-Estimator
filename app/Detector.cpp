@@ -47,21 +47,25 @@ void Detector::set_detection_object(cv::InputArray& svm_detector) {
 }
 
 /**
- * @brief Updates private member like detections and frame by performing
- *        hog detection.
+ * @brief Updates frame by performing hog detection.
  * 
+ * @return cv::Mat Returns updated frame from camera
  */
-void Detector::detect_humans() {
+cv::Mat Detector::detect_object() {
     if (!camera.isOpened()) {
         std::cout << "Cannot open the source. \n";
-        return;
+        return frame;
     }
     if (!camera.read(frame)) {
         std::cout << "\n Cannot read the frame. \n";
-        return;
+        return frame;
     }
-
+    cv::resize(frame, frame, cv::Size(640, 480));
     hog_detector.detectMultiScale(frame, detections);
+    for (auto& detection : detections) {
+        resize_bounding_box(&detection);
+    }
+    return frame;
 }
 
 /**
