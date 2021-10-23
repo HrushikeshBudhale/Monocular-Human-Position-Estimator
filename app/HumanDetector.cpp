@@ -63,17 +63,28 @@ cv::Scalar HumanDetector::get_color(int index) {
 }
 
 /**
- * @brief Method that outputs 3d position of detected humans using the set
- *        value of distance_to_detection_ht_ratio
- * 
+ * @brief Computes 3D position of detected humans by calculating the estimated distance 
+ * between the object and the camera.
  * @return std::vector<cv::Point3d> 
  */
-std::vector<cv::Point3d> HumanDetector::get_3d_position() {
-    // todo: implementing a method that outputs 3d position of detected
-    // humans using the set value of distance_to_detection_ht_ratio
-    std::vector<cv::Point3d> v;
-    return v;
+std::vector<cv::Point3d> HumanDetector::get_3d_positions() {
+    std::vector<cv::Point3d> positions_3d;
+    for (auto it = detector.detections.begin();
+              it != detector.detections.end();) {
+        double distance_z = avg_human_height * (detector.cy*2) / (*it).height;
+        if (distance_z > max_tracking_distance) {
+            it = detector.detections.erase(it);
+            continue;
+        } else {
+            auto position = detector.get_x_and_y(*it, distance_z);
+            positions_3d.push_back(cv::Point3d(position.x,
+                                               position.y, distance_z));
+            it++;
+        }
+    }
+    return positions_3d;
 }
+
 
 /**
  * @brief Tracks detected humans and assign ids
