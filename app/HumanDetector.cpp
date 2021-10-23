@@ -14,12 +14,14 @@
 /**
  * @brief Default Constructor for Human Detector class
  */
-HumanDetector::HumanDetector() {
-    // todo: initialize detector class object
-    //       and set camera properties
-    img_height = 0;
-    img_width = 0;
-    distance_to_detection_ht_ratio = 0;
+HumanDetector::HumanDetector(std::string source) {
+    detector.set_detection_object(cv::HOGDescriptor::
+                                    getDefaultPeopleDetector());
+    detector.set_camera_properties(source);
+    avg_human_height = 1.86;    // meter
+    max_tracking_distance = 7;  // meter
+    tracking_edge = 20;         // pixel
+    create_colors();
 }
 
 /**
