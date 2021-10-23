@@ -48,14 +48,18 @@ void HumanDetector::create_colors() {
 }
 
 /**
- * @brief Setter method to set the ratio of distance of human
- *        from camera to bounding box height
- * 
+ * @brief Gets color as per the index passed
+ * @param index 
  */
-void HumanDetector::set_distance_to_detection_ht_ratio() {
-    // todo: implementing a method that sets the ratio of known human
-    // distance from camera to the corresponding height of bounding box
-    // in pixels
+cv::Scalar HumanDetector::get_color(int index) {
+    if (index > static_cast<int>(colors.size())) {
+        cv::Scalar color(
+            static_cast<double>(std::rand()) / RAND_MAX * 255,
+            static_cast<double>(std::rand()) / RAND_MAX * 255,
+            static_cast<double>(std::rand()) / RAND_MAX * 255);
+        return color;
+    }
+    return colors[index];
 }
 
 /**
