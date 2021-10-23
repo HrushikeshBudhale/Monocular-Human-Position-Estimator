@@ -38,15 +38,12 @@ void Detector::set_camera_properties(std::string source) {
 }
 
 /**
- * @brief Constructor for a pre-recorded video stored in a file_path
+ * @brief Sets the type of object to be detected.
  * 
- * @param file_path 
+ * @param svm_detector descriptor of type cv::HOGDescriptor
  */
-Detector::Detector(std::string file_path) {
-    cv::VideoCapture camera = cv::VideoCapture();
-    camera.open(file_path);
-    fps = camera.get(CV_CAP_PROP_FPS);
-    hog_detector.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
+void Detector::set_detection_object(cv::InputArray& svm_detector) {
+    hog_detector.setSVMDetector(svm_detector);
 }
 
 /**
