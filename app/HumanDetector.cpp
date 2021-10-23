@@ -34,13 +34,17 @@ void HumanDetector::set_avg_human_height(double height) {
 }
 
 /**
- * @brief Setter method to set the height and width of camera frame.
- * 
- * @param height Image height in pixel
- * @param width Image width in pixel
+ * @brief Creates different colors to be used for bounding boxes
  */
-void HumanDetector::set_camera_properties(int height, int width) {
-    // todo: implementing a method that sets frame size of camera
+void HumanDetector::create_colors() {
+    colors = {cv::Scalar(255, 0, 0),
+              cv::Scalar(0, 255, 0),
+              cv::Scalar(0, 0, 255),
+              cv::Scalar(255, 255, 0),
+              cv::Scalar(0, 255, 255),
+              cv::Scalar(255, 0, 255),
+              cv::Scalar(255, 255, 255),
+              cv::Scalar(0, 0, 0)};
 }
 
 /**
