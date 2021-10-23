@@ -25,12 +25,12 @@ HumanDetector::HumanDetector(std::string source) {
 }
 
 /**
- * @brief Method that returns a map of ids of detected humans and 
- *        their 3d positions
+ * @brief Sets the average human height
+ *
+ * @param height 
  */
-void HumanDetector::track_positions() {
-    // todo: implementing a method that returns a map of ids of
-    // detected humans and their positions
+void HumanDetector::set_avg_human_height(double height) {
+    avg_human_height = height;
 }
 
 /**
