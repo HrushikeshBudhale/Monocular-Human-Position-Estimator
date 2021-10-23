@@ -22,14 +22,19 @@ Detector::Detector() {
 }
 
 /**
- * @brief Explicit constructor for Detector
- * @param camera_id int : camera id
+ * @brief Sets camera source and frame parameters
+ * 
+ * @param source <string> file path
  */
-Detector::Detector(int camera_id) {
-    camera = cv::VideoCapture();
-    camera.open(camera_id);
-    fps = camera.get(CV_CAP_PROP_FPS);
-    hog_detector.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
+void Detector::set_camera_properties(std::string source) {
+    if (source.size() < 1)
+        camera.open(0);
+    else
+        camera.open(source);
+    fps = camera.get(cv::CAP_PROP_FPS);
+    cx = 640.0 / 2.0;
+    cy = 480.0 / 2.0;
+    focal_length = cx;
 }
 
 /**
