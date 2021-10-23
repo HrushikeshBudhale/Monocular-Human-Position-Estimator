@@ -1,6 +1,6 @@
 /**
  * @file HumanDetector.cpp
- * @author Driver: Abhijit Mahalle, Navigator: Hrushikesh Budhale
+ * @author Driver: Hrushikesh Budhale, Navigator: Abhijit Mahalle
  * @brief Library for HumanDetector class
  * @version 0.1
  * @date 2021-10-14
