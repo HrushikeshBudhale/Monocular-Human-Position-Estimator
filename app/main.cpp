@@ -1,7 +1,8 @@
 /**
  * @file main.cpp
- * @author your name (you@domain.com)
- * @brief 
+ * @author Driver: Hrushikesh Budhale, Navigator: Abhijit Mahalle
+ * @brief Demo application to show use of HumanDetector and 
+ *          PoseTransformer library
  * @version 0.1
  * @date 2021-10-13
  * 
@@ -12,7 +13,6 @@
 #include <iostream>
 #include "../include/PoseTransformer.hpp"
 #include "../include/HumanDetector.hpp"
-#include "../include/Detector.hpp"
 
 int main(int argc, char *argv[]) {
     auto transformer = PoseTransformer();
