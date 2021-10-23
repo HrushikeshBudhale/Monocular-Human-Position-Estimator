@@ -1,7 +1,8 @@
 /**
  * @file Detector.hpp
  * @author Driver: Abhijit Mahalle, Navigator: Hrushikesh Budhale
- * @brief 
+ * @brief Header file for Detector class
+ *        Class that detects object of type defined by the user.
  * @version 0.1
  * @date 2021-10-14
  * 
@@ -25,20 +26,19 @@
 class Detector {
  public:
     Detector();
-    explicit Detector(int);
-    explicit Detector(std::string);
-    void set_detection_object(cv::InputArray&);
-    cv::Mat detect_object();
-    cv::Point2d get_centroid(cv::Rect);
-    cv::Point2d get_x_and_y(cv::Rect, double);
-    void resize_bounding_box(cv::Rect*);
-    ~Detector();
     double fps;
     double focal_length, cx, cy;
+    void set_camera_properties(std::string);
+    void set_detection_object(cv::InputArray&);
+    cv::Mat detect_object();
+    void resize_bounding_box(cv::Rect*);
+    cv::Point2d get_centroid(cv::Rect);
+    cv::Point2d get_x_and_y(cv::Rect, double);
     std::vector<cv::Rect> detections;
- private:
-    void set_camera_properties();
     cv::VideoCapture camera;
+    ~Detector();
+
+ private:
     cv::Mat frame;
     cv::HOGDescriptor hog_detector;
     cv::Ptr<cv::MultiTracker> multiTracker;
