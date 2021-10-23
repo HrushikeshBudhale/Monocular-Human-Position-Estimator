@@ -92,25 +92,18 @@ cv::Point2d Detector::get_centroid(cv::Rect detection) {
 }
 
 /**
- * @brief Functions that displays output
+ * @brief Computes x and y co-ordinates of the object in the real world w.r.t camera frame.
  * 
- * @return true 
- * @return false 
+ * @param detection Resized detections
+ * @param z_distance Distance between the object and the camera.
+ *
+ * @return std::vector<cv::Point2d>  
  */
-bool Detector::show_output() {
-    bool keep_showing = true;
-    for (auto& detection : detections) {
-        resize_bounding_box(&detection);
-        cv::rectangle(frame, detection.tl(), detection.br(),
-                        cv::Scalar(255, 0, 0), 2);
-    }
-    cv::imshow("Frame1", frame);
-    int key = cv::waitKey(static_cast<int>(1000.0/fps));
-    if (key == 27 || static_cast<char>(key) == 'q') {
-        cv::destroyAllWindows();
-        keep_showing = false;
-    }
-    return keep_showing;
+cv::Point2d Detector::get_x_and_y(cv::Rect detection, double z_distance) {
+    auto centroid = Detector::get_centroid(detection);
+    double x_real = (centroid.x - cx) * z_distance / focal_length;
+    double y_real = (centroid.y - cy) * z_distance / focal_length;
+    return cv::Point2d(x_real, y_real);
 }
 
 /**
