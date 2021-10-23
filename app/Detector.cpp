@@ -1,7 +1,8 @@
 /**
  * @file Detector.cpp
- * @author Driver: Abhijit Mahalle, Navigator: Hrushikesh Budhale
- * @brief library for Detector class
+ * @author Driver: Hrushikesh Budhale, Navigator: Abhijit Mahalle
+ * @brief Library for Detector class
+ *        Class that detects object of type defined by the user.
  * @version 0.1
  * @date 2021-10-14
  * 
