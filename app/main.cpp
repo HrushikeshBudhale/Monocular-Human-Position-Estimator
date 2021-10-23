@@ -21,16 +21,16 @@ int main() {
     std::vector<cv::Point2d> centroids;
     std::vector<double> position;
     while (show) {
-        detector.detect_humans();
-        show = detector.show_output();
-        centroids = detector.get_centroid();
-        for (auto& centroid : centroids) {
-            position = transformer1.get_pose_in_robot_frame({centroid.x,
-                                                            centroid.y,
-                                                            2.0});
-            std::cout << "X: " << position[0]
-                    << ", Y: " << position[1]
-                    << ", Z: " << position[2] << std::endl;
+        auto track_output = human_detector.track_positions();
+        show = human_detector.show_output();
+        id = 1;
+        for (auto& position : track_output) {
+            pos = transformer.get_pose_in_robot_frame({position.x,
+                                                       position.y,
+                                                       position.z});
+            std::printf("ID: %d  \tX: %.2f  \tY: %.2f  \tZ: %.2f\n",
+                                    id, position.x, position.y, position.z);
+            id++;
         }
     }
     return 0;
