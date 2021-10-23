@@ -165,13 +165,36 @@ std::vector<cv::Point3d> HumanDetector::track_positions() {
 }
 
 /**
- * @brief Estimates distance of a human using camera properties and
- *        bounding box size
- * @param bbox Bounding box of type cv::Rect
- * @return double 
+ * @brief Displays colored bounding boxes on an image/video feed.
+ * 
+ * @return true 
+ * @return false 
  */
-double HumanDetector::get_depth_estimate(cv::Rect bbox) {
-    double distance = 0;
-    // todo : implement logic to estimate distance of object in meter
-    return distance;
+bool HumanDetector::show_output() {
+    bool keep_showing = true;
+    cv::namedWindow("Frame1");
+    int i = 0;
+    // std::cout << detector.detections.size() << ", " << trackings.size()
+    //                  << std::endl;
+    for (auto& detection : detector.detections) {
+        cv::rectangle(frame, detection.tl(),
+                             detection.br(),
+                             get_color(2), 2);
+        auto centroid = detector.get_centroid(cv::Rect2d(trackings[i].x,
+                                         trackings[i].y,
+                                         trackings[i].width,
+                                         trackings[i].height));
+        cv::putText(frame, std::to_string(i+1), centroid,
+                                       cv::FONT_HERSHEY_SIMPLEX,
+                                       1, get_color(i), 3);
+        i++;
+    }
+
+    cv::imshow("Frame1", frame);
+    int key = cv::waitKey(static_cast<int>(1000.0 / detector.fps));
+    if (key == 27 || static_cast<char>(key) == 'q') {
+        cv::destroyAllWindows();
+        keep_showing = false;
+    }
+    return keep_showing;
 }
