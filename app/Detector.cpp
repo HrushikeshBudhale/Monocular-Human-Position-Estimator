@@ -69,12 +69,15 @@ cv::Mat Detector::detect_object() {
 }
 
 /**
- * @brief Function that returns list of bounding boxes
+ * @brief Resizes the bounding box
  * 
- * @return std::vector<cv::Rect> 
+ * @param boxPtr Pointer to cv::Rect object created after detections
  */
-std::vector<cv::Rect> Detector::get_detections() {
-    return detections;
+void Detector::resize_bounding_box(cv::Rect* boxPtr) {
+    boxPtr->x += static_cast<int>(boxPtr->width*0.2);
+    boxPtr->width = static_cast<int>(boxPtr->width*0.6);
+    boxPtr->y += static_cast<int>(boxPtr->height*0.05);
+    boxPtr->height = static_cast<int>(boxPtr->height*0.85);
 }
 
 /**
