@@ -76,16 +76,81 @@ std::vector<cv::Point3d> HumanDetector::get_3d_position() {
 }
 
 /**
- * @brief Method to convert list of 3d points to map, with each
- *        position assigned to an id.
+ * @brief Tracks detected humans and assign ids
  * 
- * @return std::map<int, std::vector<cv::Point3d>> 
+ * @return std::vector<cv::Point3d> 
  */
-std::map<int, std::vector<cv::Point3d>> HumanDetector::assign_ids() {
-    std::map<int, std::vector<cv::Point3d>> v;
-    // todo: implement logic to assign ids and return the map
-    //        with associated positions
-    return v;
+std::vector<cv::Point3d> HumanDetector::track_positions() {
+    frame = detector.detect_object();
+    detected_humans = get_3d_positions();
+    bool found;
+
+    int i = 0;
+    for (auto it = trackers.begin(); it != trackers.end();) {
+        bool updated = (*it)->update(frame, trackings[i]);
+        skipped_detections[i]++;
+        if (!updated) {
+            trackers.erase(trackers.begin()+i);
+            trackings.erase(trackings.begin()+i);
+            continue;
+        } else {
+            it++;
+            i++;
+        }
+    }
+
+    for (auto& detection : detector.detections) {
+        found = false;
+        auto detection_bb = detector.get_x_and_y(detection, 2);
+        for (int i = 0; i < static_cast<int>(trackers.size()); i++) {
+            // set found = true, if tracker_bb is near detection_bb
+            auto bb = cv::Rect(trackings[i].x, trackings[i].y,
+                               trackings[i].width, trackings[i].height);
+            auto tracking_bb = detector.get_x_and_y(bb, 2);
+            if (cv::norm(detection_bb - tracking_bb) < 0.2) {
+                found = true;
+                skipped_detections[i] = 0;
+                break;
+            }
+        }
+        if (!found) {
+            // if tracker_bb not found for that detection, create new tracker
+            auto tracker_ptr = cv::TrackerKCF::create();
+            // auto tracker_ptr = cv::TrackerMOSSE::create();
+            // auto tracker_ptr = cv::TrackerCSRT::create();
+            trackings.push_back(cv::Rect2d(detection.x,
+                                           detection.y,
+                                           detection.width,
+                                           detection.height));
+            tracker_ptr->init(frame, trackings.back());
+            trackers.push_back(tracker_ptr);
+            skipped_detections.push_back(0);
+        }
+    }
+
+    i = 0;
+    for (auto it = trackers.begin();
+              it != trackers.end();) {
+        // if tracker is on the edge remove it
+        int left = trackings[i].x;
+        int top = trackings[i].y;
+        int right = trackings[i].width;
+        int down = trackings[i].height;
+        if (left < tracking_edge
+            || skipped_detections[i] > 10
+            || top < tracking_edge
+            || right > (detector.cx*2 - tracking_edge)
+            || down > (detector.cy*2 - tracking_edge)) {
+            trackers.erase(trackers.begin()+i);
+            trackings.erase(trackings.begin()+i);
+            skipped_detections.erase(skipped_detections.begin()+i);
+            continue;
+        } else {
+            it++;
+            i++;
+        }
+    }
+    return detected_humans;
 }
 
 /**
