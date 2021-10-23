@@ -107,17 +107,8 @@ cv::Point2d Detector::get_x_and_y(cv::Rect detection, double z_distance) {
 }
 
 /**
- * @brief Resizes the bounding box
- * 
- * @param boxPtr Pointer to cv::Rect object created after detections
+ * @brief Destructor for the Detector class
  */
-void Detector::resize_bounding_box(cv::Rect* boxPtr) {
-    boxPtr->x += static_cast<int>(boxPtr->width*0.15);
-    boxPtr->width = static_cast<int>(boxPtr->width*0.7);
-    boxPtr->y += static_cast<int>(boxPtr->height*0.1);
-    boxPtr->height = static_cast<int>(boxPtr->height*0.8);
-}
-
 Detector::~Detector() {
     camera.release();
 }
