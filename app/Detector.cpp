@@ -81,17 +81,14 @@ void Detector::resize_bounding_box(cv::Rect* boxPtr) {
 }
 
 /**
- * @brief Function to compute centroid of bounding boxes
+ * @brief Computes centroid of bounding box.
  * 
  * @return std::vector<cv::Point2d> 
  */
-std::vector<cv::Point2d> Detector::get_centroid() {
-    std::vector<cv::Point2d> points;
-    for (auto& detection : detections) {
-        points.push_back(cv::Point2d(detection.x + (detection.width/2),
-                               detection.y + (detection.height/2)));
-    }
-    return points;
+cv::Point2d Detector::get_centroid(cv::Rect detection) {
+    auto centroid = cv::Point2d(detection.x + (detection.width/2.0),
+                               detection.y + (detection.height/2.0));
+    return centroid;
 }
 
 /**
