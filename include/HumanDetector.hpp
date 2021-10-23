@@ -1,7 +1,7 @@
 /**
  * @file HumanDetector.hpp
  * @author Driver: Abhijit Mahalle, Navigator: Hrushikesh Budhale
- * @brief Library for HumanDetector class
+ * @brief Library for HumanDetector class              
  * @version 0.1
  * @date 2021-10-14
  * 
@@ -12,29 +12,29 @@
 
 #include <map>
 #include <vector>
+#include <string>
 #include <opencv2/highgui/highgui.hpp>
 #include "../include/Detector.hpp"
-#include "../include/PoseTransformer.hpp"
 
-/**
- * @brief High level class for detecting humans in robot frame
- * 
- */
 class HumanDetector {
  public:
-    HumanDetector();
-    void track_positions();
-    void set_camera_properties(int, int);
-    void set_distance_to_detection_ht_ratio();
+    explicit HumanDetector(std::string);
+    std::vector<cv::Point3d> track_positions();
+    void set_avg_human_height(double);
+    bool show_output();
+    std::vector<cv::Point3d> get_3d_positions();
 
  private:
-    std::vector<cv::Point3d> get_3d_position();
-    std::map<int, std::vector<cv::Point3d>> assign_ids();
-    double get_depth_estimate(cv::Rect);
-    std::map<int, std::vector<cv::Point3d>> detected_humans;
-    int img_height;  // 480;
-    int img_width;  // 640;
+    double avg_human_height;  // 2/img_height;
+    int tracking_edge;
+    double max_tracking_distance;
     Detector detector;
-    PoseTransformer transformer;
-    double distance_to_detection_ht_ratio;  // 2/img_height;
+    cv::Mat frame;
+    std::vector<cv::Scalar> colors;
+    std::vector<cv::Point3d> detected_humans;  // positions
+    std::vector<int> skipped_detections;
+    std::vector<cv::Rect2d> trackings;  // bounding boxes
+    std::vector<cv::Ptr<cv::Tracker>> trackers;
+    void create_colors();
+    cv::Scalar get_color(int);
 };
