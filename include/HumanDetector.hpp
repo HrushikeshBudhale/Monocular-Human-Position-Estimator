@@ -10,22 +10,21 @@
  */
 #pragma once
 
-#include <map>
 #include <vector>
 #include <string>
-#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/tracking/tracking.hpp>
 #include "../include/Detector.hpp"
+
 
 class HumanDetector {
  public:
     explicit HumanDetector(std::string);
     std::vector<cv::Point3d> track_positions();
-    void set_avg_human_height(double);
     bool show_output();
     std::vector<cv::Point3d> get_3d_positions();
+    double avg_human_height;
 
  private:
-    double avg_human_height;  // 2/img_height;
     int tracking_edge;
     double max_tracking_distance;
     Detector detector;
