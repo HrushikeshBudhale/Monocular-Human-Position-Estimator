@@ -18,19 +18,10 @@ HumanDetector::HumanDetector(std::string source) {
     detector.set_detection_object(cv::HOGDescriptor::
                                     getDefaultPeopleDetector());
     detector.set_camera_properties(source);
-    avg_human_height = 1.86;    // meter
-    max_tracking_distance = 7;  // meter
-    tracking_edge = 20;         // pixel
+    avg_human_height = 1.62;     // meter
+    max_tracking_distance = 6;   // meter
+    tracking_edge = 20;          // pixel
     create_colors();
-}
-
-/**
- * @brief Sets the average human height
- *
- * @param height 
- */
-void HumanDetector::set_avg_human_height(double height) {
-    avg_human_height = height;
 }
 
 /**
