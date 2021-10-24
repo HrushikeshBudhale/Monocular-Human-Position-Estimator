@@ -4,6 +4,8 @@ add_executable(
     cpp-test
     main.cpp
     PoseTransformer_test.cpp
+    Detector_test.cpp
+    HumanDetector_test.cpp
     ../app/PoseTransformer.cpp
     ../app/Detector.cpp
     ../app/HumanDetector.cpp
