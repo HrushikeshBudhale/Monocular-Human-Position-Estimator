@@ -18,8 +18,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/videoio/videoio.hpp>
-#include <opencv2/tracking/tracking.hpp>
+// #include <opencv2/videoio/videoio.hpp>
 #include <opencv2/opencv.hpp>
 
 
@@ -41,7 +40,6 @@ class Detector {
  private:
     cv::Mat frame;
     cv::HOGDescriptor hog_detector;
-    cv::Ptr<cv::MultiTracker> multiTracker;
 };
 
 #endif  // INCLUDE_DETECTOR_HPP_
