@@ -25,7 +25,7 @@ before_install:
 install:
   - sudo apt-get install -y -qq lcov
   - sudo apt-get install -y libeigen3-dev
-  - sudo add-apt-repository ppa:alfonsosanchezbeato/opencv-tracking
+  - sudo add-apt-repository ppa:alfonsosanchezbeato/opencv-tracking -y
   - sudo apt-get install libopencv-contrib-dev
   - sudo apt-get install libopencv-dev
 script:
