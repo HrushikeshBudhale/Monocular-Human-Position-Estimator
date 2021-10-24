@@ -18,8 +18,9 @@
  * 
  */
 Detector::Detector() {
-    cv::VideoCapture camera = cv::VideoCapture();
-    multiTracker = cv::MultiTracker::create();
+    cx = 640.0 / 2.0;
+    cy = 480.0 / 2.0;
+    focal_length = cx;
 }
 
 /**
@@ -28,10 +29,17 @@ Detector::Detector() {
  * @param source <string> file path
  */
 void Detector::set_camera_properties(std::string source) {
-    if (source.size() < 1)
+    // cv::VideoCapture camera = cv::VideoCapture();
+    if (source.size() < 1) {
+        camera = cv::VideoCapture();
         camera.open(0);
-    else
+    } else if (source.substr(source.size()-4) == ".jpg") {
+        camera = cv::VideoCapture(source, cv::CAP_IMAGES);
         camera.open(source);
+    } else {
+        camera = cv::VideoCapture(source);
+        camera.open(source);
+    }
     fps = camera.get(cv::CAP_PROP_FPS);
     cx = 640.0 / 2.0;
     cy = 480.0 / 2.0;
