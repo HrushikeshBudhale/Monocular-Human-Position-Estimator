@@ -1,0 +1,72 @@
+\hypertarget{classPoseTransformer}{}\doxysection{Pose\+Transformer Class Reference}
+\label{classPoseTransformer}\index{PoseTransformer@{PoseTransformer}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPoseTransformer_a3ae248963990cdabe6ab60c387f74903}\label{classPoseTransformer_a3ae248963990cdabe6ab60c387f74903}} 
+\mbox{\hyperlink{classPoseTransformer_a3ae248963990cdabe6ab60c387f74903}{Pose\+Transformer}} ()
+\begin{DoxyCompactList}\small\item\em Explicit constructor for \mbox{\hyperlink{classPoseTransformer}{Pose\+Transformer}} class. Initializes robot frame and camera frame as an identity matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPoseTransformer_af5a4815e4ab4ee888db8b590222f27f4}{set\+\_\+cam\+\_\+frame}} (std\+::vector$<$ double $>$)
+\begin{DoxyCompactList}\small\item\em Sets camera frame by creating 4x4 homogenous matrix based on camera\textquotesingle{}s translation and rotation w.\+r.\+t world frame. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPoseTransformer_a0aba9a813235fd42d8fffd7412cb6273}{set\+\_\+robot\+\_\+frame}} (std\+::vector$<$ double $>$)
+\begin{DoxyCompactList}\small\item\em Sets robot frame by creating 4x4 homogenous matrix based on robot\textquotesingle{}s translation and rotation w.\+r.\+t world frame. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classPoseTransformer_ae4987bbbf325661db5ceddb3666fcb0f}{get\+\_\+pose\+\_\+in\+\_\+robot\+\_\+frame}} (std\+::vector$<$ double $>$)
+\begin{DoxyCompactList}\small\item\em Transforms coordinates from camera frame to robot frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPoseTransformer_ae4987bbbf325661db5ceddb3666fcb0f}\label{classPoseTransformer_ae4987bbbf325661db5ceddb3666fcb0f}} 
+\index{PoseTransformer@{PoseTransformer}!get\_pose\_in\_robot\_frame@{get\_pose\_in\_robot\_frame}}
+\index{get\_pose\_in\_robot\_frame@{get\_pose\_in\_robot\_frame}!PoseTransformer@{PoseTransformer}}
+\doxysubsubsection{\texorpdfstring{get\_pose\_in\_robot\_frame()}{get\_pose\_in\_robot\_frame()}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ Pose\+Transformer\+::get\+\_\+pose\+\_\+in\+\_\+robot\+\_\+frame (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{position\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Transforms coordinates from camera frame to robot frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position\+\_\+} & vector$<$double$>$ is a 3 element vector containing \{x, y, z\} of human in camera frame ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$double$>$ new\+Pose is a 3 element vector containing \{x, y, z\} of human in robot frame 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPoseTransformer_af5a4815e4ab4ee888db8b590222f27f4}\label{classPoseTransformer_af5a4815e4ab4ee888db8b590222f27f4}} 
+\index{PoseTransformer@{PoseTransformer}!set\_cam\_frame@{set\_cam\_frame}}
+\index{set\_cam\_frame@{set\_cam\_frame}!PoseTransformer@{PoseTransformer}}
+\doxysubsubsection{\texorpdfstring{set\_cam\_frame()}{set\_cam\_frame()}}
+{\footnotesize\ttfamily void Pose\+Transformer\+::set\+\_\+cam\+\_\+frame (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{cam\+Frame\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Sets camera frame by creating 4x4 homogenous matrix based on camera\textquotesingle{}s translation and rotation w.\+r.\+t world frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cam\+Frame\+\_\+} & vector$<$double$>$ containing 6 elements \{x, y, z, roll, pitch, yaw\} in meters and radians \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPoseTransformer_a0aba9a813235fd42d8fffd7412cb6273}\label{classPoseTransformer_a0aba9a813235fd42d8fffd7412cb6273}} 
+\index{PoseTransformer@{PoseTransformer}!set\_robot\_frame@{set\_robot\_frame}}
+\index{set\_robot\_frame@{set\_robot\_frame}!PoseTransformer@{PoseTransformer}}
+\doxysubsubsection{\texorpdfstring{set\_robot\_frame()}{set\_robot\_frame()}}
+{\footnotesize\ttfamily void Pose\+Transformer\+::set\+\_\+robot\+\_\+frame (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{robot\+Frame\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Sets robot frame by creating 4x4 homogenous matrix based on robot\textquotesingle{}s translation and rotation w.\+r.\+t world frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em robot\+Frame\+\_\+} & vector$<$double$>$ containing 6 elements \{x, y, z, roll, pitch, yaw\} in meters and radians \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{PoseTransformer_8hpp}{Pose\+Transformer.\+hpp}}\item 
+app/\mbox{\hyperlink{PoseTransformer_8cpp}{Pose\+Transformer.\+cpp}}\end{DoxyCompactItemize}

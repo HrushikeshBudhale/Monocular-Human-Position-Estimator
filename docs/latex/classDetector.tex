@@ -1,0 +1,157 @@
+\hypertarget{classDetector}{}\doxysection{Detector Class Reference}
+\label{classDetector}\index{Detector@{Detector}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDetector_aa43b3d7bbd4b225855b4bcc93f70b225}{Detector}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classDetector}{Detector}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDetector_afaafa16ecbfbc891456cb167ad6c98fc}{set\+\_\+camera\+\_\+properties}} (std\+::string)
+\begin{DoxyCompactList}\small\item\em Sets camera source and frame parameters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDetector_a0a40504b36229ce49e58a6b49fe02513}{set\+\_\+detection\+\_\+object}} (cv\+::\+Input\+Array \&)
+\begin{DoxyCompactList}\small\item\em Sets the type of object to be detected. \end{DoxyCompactList}\item 
+cv\+::\+Mat \mbox{\hyperlink{classDetector_a1f9fef8e89e9ab84b265465f0a8285fc}{detect\+\_\+object}} ()
+\begin{DoxyCompactList}\small\item\em Updates frame by performing hog detection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDetector_ab03122e5d92d191a87ae5fcba196b3bf}{resize\+\_\+bounding\+\_\+box}} (cv\+::\+Rect $\ast$)
+\begin{DoxyCompactList}\small\item\em Resizes the bounding box. \end{DoxyCompactList}\item 
+cv\+::\+Point2d \mbox{\hyperlink{classDetector_a830d131e313fb402297400bd8067a445}{get\+\_\+centroid}} (cv\+::\+Rect)
+\begin{DoxyCompactList}\small\item\em Computes centroid of bounding box. \end{DoxyCompactList}\item 
+cv\+::\+Point2d \mbox{\hyperlink{classDetector_ad447befbce2ee537dd4557ea67c58892}{get\+\_\+x\+\_\+and\+\_\+y}} (cv\+::\+Rect, double)
+\begin{DoxyCompactList}\small\item\em Computes x and y co-\/ordinates of the object in the real world w.\+r.\+t camera frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDetector_ae16b7bf62f39cb287927d56ca17663d7}\label{classDetector_ae16b7bf62f39cb287927d56ca17663d7}} 
+\mbox{\hyperlink{classDetector_ae16b7bf62f39cb287927d56ca17663d7}{$\sim$\+Detector}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classDetector}{Detector}} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDetector_a902e70b07bce4c7dcf67a2569277a2d0}\label{classDetector_a902e70b07bce4c7dcf67a2569277a2d0}} 
+double {\bfseries fps}
+\item 
+\mbox{\Hypertarget{classDetector_ad7b0222081ae62db15941684d801985a}\label{classDetector_ad7b0222081ae62db15941684d801985a}} 
+double {\bfseries focal\+\_\+length}
+\item 
+\mbox{\Hypertarget{classDetector_adc76b6769f5e3a990f031d43c611e714}\label{classDetector_adc76b6769f5e3a990f031d43c611e714}} 
+double {\bfseries cx}
+\item 
+\mbox{\Hypertarget{classDetector_a30a80643860a145e18089bb1dee7d6da}\label{classDetector_a30a80643860a145e18089bb1dee7d6da}} 
+double {\bfseries cy}
+\item 
+\mbox{\Hypertarget{classDetector_ac41a6491afdfc2384785e6d53b41c31d}\label{classDetector_ac41a6491afdfc2384785e6d53b41c31d}} 
+std\+::vector$<$ cv\+::\+Rect $>$ {\bfseries detections}
+\item 
+\mbox{\Hypertarget{classDetector_a8eefff70b4856b0a339ee0ee071be9b8}\label{classDetector_a8eefff70b4856b0a339ee0ee071be9b8}} 
+cv\+::\+Video\+Capture {\bfseries camera}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDetector_aa43b3d7bbd4b225855b4bcc93f70b225}\label{classDetector_aa43b3d7bbd4b225855b4bcc93f70b225}} 
+\index{Detector@{Detector}!Detector@{Detector}}
+\index{Detector@{Detector}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{Detector()}{Detector()}}
+{\footnotesize\ttfamily Detector\+::\+Detector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for \mbox{\hyperlink{classDetector}{Detector}}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDetector_a1f9fef8e89e9ab84b265465f0a8285fc}\label{classDetector_a1f9fef8e89e9ab84b265465f0a8285fc}} 
+\index{Detector@{Detector}!detect\_object@{detect\_object}}
+\index{detect\_object@{detect\_object}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{detect\_object()}{detect\_object()}}
+{\footnotesize\ttfamily cv\+::\+Mat Detector\+::detect\+\_\+object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates frame by performing hog detection. 
+
+\begin{DoxyReturn}{Returns}
+cv\+::\+Mat Returns updated frame from camera 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDetector_a830d131e313fb402297400bd8067a445}\label{classDetector_a830d131e313fb402297400bd8067a445}} 
+\index{Detector@{Detector}!get\_centroid@{get\_centroid}}
+\index{get\_centroid@{get\_centroid}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{get\_centroid()}{get\_centroid()}}
+{\footnotesize\ttfamily cv\+::\+Point2d Detector\+::get\+\_\+centroid (\begin{DoxyParamCaption}\item[{cv\+::\+Rect}]{detection }\end{DoxyParamCaption})}
+
+
+
+Computes centroid of bounding box. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$cv\+::\+Point2d$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDetector_ad447befbce2ee537dd4557ea67c58892}\label{classDetector_ad447befbce2ee537dd4557ea67c58892}} 
+\index{Detector@{Detector}!get\_x\_and\_y@{get\_x\_and\_y}}
+\index{get\_x\_and\_y@{get\_x\_and\_y}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{get\_x\_and\_y()}{get\_x\_and\_y()}}
+{\footnotesize\ttfamily cv\+::\+Point2d Detector\+::get\+\_\+x\+\_\+and\+\_\+y (\begin{DoxyParamCaption}\item[{cv\+::\+Rect}]{detection,  }\item[{double}]{z\+\_\+distance }\end{DoxyParamCaption})}
+
+
+
+Computes x and y co-\/ordinates of the object in the real world w.\+r.\+t camera frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em detection} & Resized detections \\
+\hline
+{\em z\+\_\+distance} & Distance between the object and the camera.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$cv\+::\+Point2d$>$ ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDetector_ab03122e5d92d191a87ae5fcba196b3bf}\label{classDetector_ab03122e5d92d191a87ae5fcba196b3bf}} 
+\index{Detector@{Detector}!resize\_bounding\_box@{resize\_bounding\_box}}
+\index{resize\_bounding\_box@{resize\_bounding\_box}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{resize\_bounding\_box()}{resize\_bounding\_box()}}
+{\footnotesize\ttfamily void Detector\+::resize\+\_\+bounding\+\_\+box (\begin{DoxyParamCaption}\item[{cv\+::\+Rect $\ast$}]{box\+Ptr }\end{DoxyParamCaption})}
+
+
+
+Resizes the bounding box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em box\+Ptr} & Pointer to cv\+::\+Rect object created after detections \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDetector_afaafa16ecbfbc891456cb167ad6c98fc}\label{classDetector_afaafa16ecbfbc891456cb167ad6c98fc}} 
+\index{Detector@{Detector}!set\_camera\_properties@{set\_camera\_properties}}
+\index{set\_camera\_properties@{set\_camera\_properties}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{set\_camera\_properties()}{set\_camera\_properties()}}
+{\footnotesize\ttfamily void Detector\+::set\+\_\+camera\+\_\+properties (\begin{DoxyParamCaption}\item[{std\+::string}]{source }\end{DoxyParamCaption})}
+
+
+
+Sets camera source and frame parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & $<$string$>$ file path \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDetector_a0a40504b36229ce49e58a6b49fe02513}\label{classDetector_a0a40504b36229ce49e58a6b49fe02513}} 
+\index{Detector@{Detector}!set\_detection\_object@{set\_detection\_object}}
+\index{set\_detection\_object@{set\_detection\_object}!Detector@{Detector}}
+\doxysubsubsection{\texorpdfstring{set\_detection\_object()}{set\_detection\_object()}}
+{\footnotesize\ttfamily void Detector\+::set\+\_\+detection\+\_\+object (\begin{DoxyParamCaption}\item[{cv\+::\+Input\+Array \&}]{svm\+\_\+detector }\end{DoxyParamCaption})}
+
+
+
+Sets the type of object to be detected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em svm\+\_\+detector} & descriptor of type cv\+::\+H\+O\+G\+Descriptor \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Detector_8hpp}{Detector.\+hpp}}\item 
+app/\mbox{\hyperlink{Detector_8cpp}{Detector.\+cpp}}\end{DoxyCompactItemize}
