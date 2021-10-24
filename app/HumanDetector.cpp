@@ -117,7 +117,8 @@ std::vector<cv::Point3d> HumanDetector::track_positions() {
         }
         if (!found) {
             // if tracker_bb not found for that detection, create new tracker
-            auto tracker_ptr = cv::TrackerKCF::create();
+            auto tracker_ptr = cv::Tracker::create("KCF");
+            // auto tracker_ptr = cv::TrackerKCF::create();
             // auto tracker_ptr = cv::TrackerMOSSE::create();
             // auto tracker_ptr = cv::TrackerCSRT::create();
             trackings.push_back(cv::Rect2d(detection.x,

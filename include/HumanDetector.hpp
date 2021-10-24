@@ -12,7 +12,7 @@
 
 #include <vector>
 #include <string>
-#include <opencv2/tracking/tracking.hpp>
+#include <opencv2/tracking.hpp>
 #include "../include/Detector.hpp"
 
 
