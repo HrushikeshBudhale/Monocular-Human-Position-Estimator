@@ -18,9 +18,11 @@ Detailed developer level documentation and installation steps have been created 
  3. As the distance of human from camera is being calculated using monocular camera, the depth estimate of the tracker is too noisy, results can be improved by adding proper filter or by using depth sensor.
  
  ---
-### [Product Backlog](https://docs.google.com/spreadsheets/d/1KF9aKQJTfanBHgDmTPipmk2IF8u1touHpT6VdUuIId4/edit?usp=sharing)
+### Product Backlog
+Product backlog can be found in [google sheet](https://docs.google.com/spreadsheets/d/1KF9aKQJTfanBHgDmTPipmk2IF8u1touHpT6VdUuIId4/edit?usp=sharing)
 
-### [Sprint planning notes](https://docs.google.com/document/d/1Ov0n0FiRoefbuTpbJCGnaQuJ2t1R9MHB2j_GyZQ0szY/edit?usp=sharing)
+### Sprint planning notes
+Sprint planning notes can found in [google docs](https://docs.google.com/document/d/1Ov0n0FiRoefbuTpbJCGnaQuJ2t1R9MHB2j_GyZQ0szY/edit?usp=sharing)
 
 ### Deliverables
 * Developer level documentation using doxygen
@@ -33,7 +35,7 @@ Detailed developer level documentation and installation steps have been created 
 * Valgrind output for memory leak ceck
 
 ### Documentation
-Doxygen generated documentation can be found [here](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/docs/html/index.html).
+Doxygen generated documentation can be found [here](https://hrushikeshbudhale.github.io/Monocular-Human-Position-Estimator/docs/html/index.html)
 <br />
 Run the following command in folder's root directory to generate new documentation
 ```
