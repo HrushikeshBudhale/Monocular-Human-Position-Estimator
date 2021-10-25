@@ -5,6 +5,7 @@ Done processing ./app/main.cpp
 Done processing ./include/Detector.hpp
 Done processing ./include/HumanDetector.hpp
 Done processing ./include/PoseTransformer.hpp
+Done processing ./test/Detector_test.cpp
+Done processing ./test/HumanDetector_test.cpp
 Done processing ./test/PoseTransformer_test.cpp
 Done processing ./test/main.cpp
-
