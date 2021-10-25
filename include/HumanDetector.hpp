@@ -1,40 +1,64 @@
 /**
  * @file HumanDetector.hpp
  * @author Driver: Abhijit Mahalle, Navigator: Hrushikesh Budhale
- * @brief Library for HumanDetector class
+ * @brief Library for HumanDetector class              
  * @version 0.1
  * @date 2021-10-14
  * 
  * @copyright Copyright (c) 2021
  * 
  */
+
+/*
+Monocular Human Position Estimator
+
+Copyright © 2021
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 #pragma once
 
-#include <map>
 #include <vector>
-#include <opencv2/highgui/highgui.hpp>
+#include <string>
+#include <opencv2/tracking.hpp>
 #include "../include/Detector.hpp"
-#include "../include/PoseTransformer.hpp"
 
-/**
- * @brief High level class for detecting humans in robot frame
- * 
- */
+
 class HumanDetector {
  public:
-    HumanDetector();
-    void track_positions();
-    void set_camera_properties(int, int);
-    void set_distance_to_detection_ht_ratio();
+    explicit HumanDetector(std::string);
+    std::vector<cv::Point3d> track_positions();
+    bool show_output();
+    std::vector<cv::Point3d> get_3d_positions();
+    double avg_human_height;
 
  private:
-    std::vector<cv::Point3d> get_3d_position();
-    std::map<int, std::vector<cv::Point3d>> assign_ids();
-    double get_depth_estimate(cv::Rect);
-    std::map<int, std::vector<cv::Point3d>> detected_humans;
-    int img_height;  // 480;
-    int img_width;  // 640;
+    int tracking_edge;
+    double max_tracking_distance;
     Detector detector;
-    PoseTransformer transformer;
-    double distance_to_detection_ht_ratio;  // 2/img_height;
+    cv::Mat frame;
+    std::vector<cv::Scalar> colors;
+    std::vector<cv::Point3d> detected_humans;  // positions
+    std::vector<int> skipped_detections;
+    std::vector<cv::Rect2d> trackings;  // bounding boxes
+    std::vector<cv::Ptr<cv::Tracker>> trackers;
+    void create_colors();
+    cv::Scalar get_color(int);
 };

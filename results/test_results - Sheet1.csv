@@ -1,0 +1,22 @@
+Humand Detector Test Results,,,,
+,,,,
+Image name,Expected result,Actual output,Result,Comment
+1,2,2,Pass,
+2,2,2,Pass,
+3,2,3,Fail,False Positive
+4,3,3,Pass,
+5,1,1,Pass,
+6,2,2,Pass,
+7,1,0,Fail,False Negative
+8,3,3,Pass,
+9,3,3,Pass,
+10,4,4,Pass,
+11,0,0,Pass,
+12,0,0,Pass,
+13,0,1,Fail,False Positive
+14,0,0,Pass,
+15,0,0,Pass,
+,,,,
+,,Accuracy,80.00%,
+,,,,
+I,,,,

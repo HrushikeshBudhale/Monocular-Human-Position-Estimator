@@ -1,0 +1,93 @@
+\href{https://app.travis-ci.com/HrushikeshBudhale/Monocular-Human-Position-Estimator}{\texttt{ }} \href{https://coveralls.io/github/HrushikeshBudhale/Monocular-Human-Position-Estimator?branch=main}{\texttt{ }} \href{https://opensource.org/licenses/MIT}{\texttt{ }}\hypertarget{index_autotoc_md1}{}\doxysubsection{Project Overview and Description}\label{index_autotoc_md1}
+Applications of Computer Vision are being rapidly deployed across diverse fields from simple object detection to more advanced self-\/driving vehicles. It is a field of artificial intelligence that enables computers and systems to derive meaningful information from digital images, videos, and other visual inputs and take actions or make recommendations based on that information. Acme Robotics is looking to leverage the field of Computer Vision by integrating a perception software module into its existing robotic hardware system to detect and track humans around a robot.
+
+The scope of this project is to develop a software which detects and tracks one or more humans around a robot using a monocular camera. This is accomplished by using the pre-\/trained H\+OG (Histogram of Oriented Gradient) descriptor provided by Open\+CV. Along with this we also used an S\+VM (Support Vector Machine) detector from opencv to detect the location of humans in the camera frame. These features output the parameters of the bounding boxes around the detected humans. These parameters are then used to determine the 2d position (x,y) of the detected humans with respect to the camera. Using appropriate camera parameters and known values of the size of bounding boxes for an average human standing at a given distance from a camera, the value of depth (distance between the camera and human/s) is calculated by the method of equivalent ratio. These 3d-\/positions are then transformed to the robot’s frame to determine the position of humans with respect to the robot using an appropriate transformation matrix between the robot and camera frame. These 3d-\/positions are then fed into the tracker part of the software which assigns unique identity to the detected humans.
+
+Detailed developer level documentation and installation steps have been created for new developers to contribute and use it with ease. This project ensures it’s correctness by testing every class on multiple unit tests created in the gtest suite. Latest build status and code coverage tests are performed in continuous integration with the help of travis and coverall. To ensure implementation accuracy each class has been developed by unit testing it on multiple test cases using the gtest suite.\hypertarget{index_autotoc_md2}{}\doxysubsection{Risks and Mitigation}\label{index_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item For detecting humans, H\+OG descriptor has been used which is not a state of the art detector and performs poorly in unevenly lit frames, it also fails to detect humans properly in poses other than standing pose like sitting, lying, bending positions. Detection performance can be improved by using new human detections techniques using neural networks.
+\item Implemented tracker does not account for 2 humans crossing each other and can result in change the id assigned to humans on such events. Improved results can be obtained by properly estimating depth of each person from camera and using the knowledge from previous tracker output.
+\item As the distance of human from camera is being calculated using monocular camera, the depth estimate of the tracker is too noisy, results can be improved by adding proper filter or by using depth sensor.
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+ \hypertarget{index_autotoc_md4}{}\doxysubsection{$<$a href=\char`\"{}https\+://docs.\+google.\+com/spreadsheets/d/1\+K\+F9a\+K\+Q\+J\+Tfan\+B\+Hg\+Dm\+T\+Pipmk2\+I\+F8u1tou\+Hp\+T6\+Vd\+Uu\+I\+Id4/edit?usp=sharing\char`\"{}$>$\+Product Backlog$<$/a$>$}\label{index_autotoc_md4}
+\hypertarget{index_autotoc_md5}{}\doxysubsection{Deliverables}\label{index_autotoc_md5}
+
+\begin{DoxyItemize}
+\item Developer level documentation using doxygen
+\item Build status using travis CI
+\item Code coverage using coveralls.
+\item Accurate implementation using generated test cases in gtest
+\item Steps showing how to build the repository
+\item Steps showing how to run test and demo applications.
+\item Steps showing how to generate Doxygen documentation
+\item Known Issues/bugs in the code
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysubsubsection{Issues and Bugs}\label{index_autotoc_md6}
+\hypertarget{index_autotoc_md7}{}\doxysection{-\/ No issues or bugs have been encountered yet}\label{index_autotoc_md7}
+\hypertarget{index_autotoc_md8}{}\doxysection{Standard install via command-\/line}\label{index_autotoc_md8}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo apt-\/get update}
+\DoxyCodeLine{sudo apt-\/get install libeigen3-\/dev}
+\DoxyCodeLine{sudo apt-\/get install libopencv-\/dev}
+\DoxyCodeLine{git clone -\/-\/recursive https://github.com/HrushikeshBudhale/Monocular-\/Human-\/Position-\/Estimator}
+\DoxyCodeLine{cd Monocular-\/Human-\/Position-\/Estimator/}
+\DoxyCodeLine{mkdir build}
+\DoxyCodeLine{cd build}
+\DoxyCodeLine{cmake ..}
+\DoxyCodeLine{make}
+\end{DoxyCode}
+\hypertarget{index_autotoc_md9}{}\doxysubsubsection{Run main program}\label{index_autotoc_md9}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./app/shell-\/app}
+\end{DoxyCode}
+\hypertarget{index_autotoc_md10}{}\doxysubsubsection{Run tests}\label{index_autotoc_md10}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./test/cpp-\/test}
+\end{DoxyCode}
+\hypertarget{index_autotoc_md11}{}\doxysubsection{Building for code coverage}\label{index_autotoc_md11}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo apt-\/get install lcov}
+\DoxyCodeLine{cmake -\/D COVERAGE=ON -\/D CMAKE\_BUILD\_TYPE=Debug ../}
+\DoxyCodeLine{make}
+\DoxyCodeLine{make code\_coverage}
+\end{DoxyCode}
+
+
+This generates a index.\+html page in the build/coverage sub-\/directory that can be viewed locally in a web browser.\hypertarget{index_autotoc_md12}{}\doxysubsubsection{Perform cppcheck}\label{index_autotoc_md12}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{find ./app ./include ./test -\/iname  *.cpp -\/or -\/iname *.hpp | xargs cppcheck}
+\end{DoxyCode}
+\hypertarget{index_autotoc_md13}{}\doxysubsubsection{Perform cpplint}\label{index_autotoc_md13}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{find ./app ./include ./test -\/iname  *.cpp -\/or -\/iname *.hpp | xargs cpplint}
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md15}{}\doxysubsection{U\+M\+L Class Diagram}\label{index_autotoc_md15}
+ 
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md17}{}\doxysubsection{Activity Diagram}\label{index_autotoc_md17}
+ 
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md19}{}\doxysubsection{Video link}\label{index_autotoc_md19}
+
+\begin{DoxyItemize}
+\item \href{https://youtu.be/fk__0-6L_vQ}{\texttt{ Project Proposal Video}}
+\item \href{https://youtu.be/0RSSTZF7N8k}{\texttt{ Phase1 Demo}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md20}{}\doxysubsection{External Dependencies}\label{index_autotoc_md20}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/opencv/opencv}{\texttt{ Opencv}}
+\item \href{https://eigen.tuxfamily.org/index.php?title=Main_Page}{\texttt{ Eigen3}} 
+\end{DoxyItemize}
