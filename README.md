@@ -130,10 +130,11 @@ Existing results can be found in [/results/cpplint_output.txt](https://github.co
 ---
 
 ### Results
-Performed tests on 15 different images. Out of them 10 images were of humans and remaining 5 were of other objects.
-Detector output showed 80% accuracy with 2 false negatives and 1 false positive.
-[csv file](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/test_results%20-%20Sheet1.csv)
-Source: PennFudanPed dataset
+ Performed tests on 15 different images. Out of them 10 images were of humans and remaining 5 were of other objects.
+ Detector output showed 80% accuracy with 2 false negatives and 1 false positive.
+ [csv file](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/test_results%20-%20Sheet1.csv)
+ <br />
+ Source: PennFudanPed dataset
 
 The developed software is only able to detect humans that are facing towards or away from the camera. The detections algorithm does not detect humans who are beyond 6 meters from camera. Detection works properly if there is color contrast between humans and background. Occluded humans and humans standing near each other in the frame does not get detected properly. Tracker algorithm fails to keep track of humans crossing each other. Since the algorithm considers average human height in USA of 1.68 meter, the distance estimation fails to give correct output on people with different heights.
 
