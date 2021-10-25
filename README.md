@@ -51,6 +51,8 @@ doxygen docs/doxygen_config.conf
 sudo apt-get update
 sudo apt-get install libeigen3-dev
 sudo apt-get install libopencv-dev
+sudo add-apt-repository -y ppa:alfonsosanchezbeato/opencv-tracking 
+sudo apt-get install libopencv-contrib-dev
 git clone --recursive https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator
 cd Monocular-Human-Position-Estimator/
 mkdir build
