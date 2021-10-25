@@ -105,20 +105,20 @@ Existing results can be found in [/results/cpplint_output.txt](https://github.co
 
 ### Valgrind memory leak check
   Checked for memory leaks uing valgrind. No memory leaks found.
-  output can be found [here](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/results/valgrind_output.txt)
+  output can be found [here](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/valgrind_output.txt)
 
 ---
 
 ### UML Class Diagram
 <p align="center">
-  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/uml/revised/uml_v2.png" alt="UML Diagram" width="600"/>
+  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/uml/revised/uml_v2.png" alt="UML Diagram" width="600"/>
 </p>
 
 ---
 
 ### Activity Diagram
 <p align="center">
-  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/docs/activity_diagram.png" alt="ACTIVITY DIAGRAM" width="400"/>
+  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/docs/activity_diagram.png" alt="ACTIVITY DIAGRAM" width="400"/>
 </p>
 
 ---
