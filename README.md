@@ -18,9 +18,11 @@ Detailed developer level documentation and installation steps have been created 
  3. As the distance of human from camera is being calculated using monocular camera, the depth estimate of the tracker is too noisy, results can be improved by adding proper filter or by using depth sensor.
  
  ---
-### [Product Backlog](https://docs.google.com/spreadsheets/d/1KF9aKQJTfanBHgDmTPipmk2IF8u1touHpT6VdUuIId4/edit?usp=sharing)
+### Product Backlog
+Product backlog can be found in [google sheet](https://docs.google.com/spreadsheets/d/1KF9aKQJTfanBHgDmTPipmk2IF8u1touHpT6VdUuIId4/edit?usp=sharing)
 
-### [Sprint planning notes](https://docs.google.com/document/d/1Ov0n0FiRoefbuTpbJCGnaQuJ2t1R9MHB2j_GyZQ0szY/edit?usp=sharing)
+### Sprint planning notes
+Sprint planning notes can found in [google docs](https://docs.google.com/document/d/1Ov0n0FiRoefbuTpbJCGnaQuJ2t1R9MHB2j_GyZQ0szY/edit?usp=sharing)
 
 ### Deliverables
 * Developer level documentation using doxygen
@@ -33,7 +35,7 @@ Detailed developer level documentation and installation steps have been created 
 * Valgrind output for memory leak ceck
 
 ### Documentation
-Doxygen generated documentation can be found [here](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/docs/html/index.html).
+Doxygen generated documentation can be found [here](https://hrushikeshbudhale.github.io/Monocular-Human-Position-Estimator/docs/html/index.html)
 <br />
 Run the following command in folder's root directory to generate new documentation
 ```
@@ -105,20 +107,20 @@ Existing results can be found in [/results/cpplint_output.txt](https://github.co
 
 ### Valgrind memory leak check
   Checked for memory leaks uing valgrind. No memory leaks found.
-  output can be found [here](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/results/valgrind_output.txt)
+  output can be found [here](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/valgrind_output.txt)
 
 ---
 
 ### UML Class Diagram
 <p align="center">
-  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/uml/revised/uml_v2.png" alt="UML Diagram" width="600"/>
+  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/uml/revised/uml_v2.png" alt="UML Diagram" width="600"/>
 </p>
 
 ---
 
 ### Activity Diagram
 <p align="center">
-  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/docs/activity_diagram.png" alt="ACTIVITY DIAGRAM" width="400"/>
+  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/docs/activity_diagram.png" alt="ACTIVITY DIAGRAM" width="400"/>
 </p>
 
 ---
