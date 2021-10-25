@@ -19,22 +19,27 @@ Detailed developer level documentation and installation steps have been created 
  
  ---
 ### [Product Backlog](https://docs.google.com/spreadsheets/d/1KF9aKQJTfanBHgDmTPipmk2IF8u1touHpT6VdUuIId4/edit?usp=sharing)
+### [Sprint planning notes](https://docs.google.com/document/d/1Ov0n0FiRoefbuTpbJCGnaQuJ2t1R9MHB2j_GyZQ0szY/edit?usp=sharing)
 
 ### Deliverables
 * Developer level documentation using doxygen
 * Build status using travis CI
-* Code coverage using coveralls.
+* Code coverage using coveralls
 * Accurate implementation using generated test cases in gtest
 * Steps showing how to build the repository
-* Steps showing how to run test and demo applications.
+* Steps showing how to run test and demo applications
 * Steps showing how to generate Doxygen documentation
-* Known Issues/bugs in the code
+* Valgrind output for memory leak ceck
 
-#### Issues and Bugs
- - No issues or bugs have been encountered yet
----
+### Documentation
+Doxygen generated documentation can be found [here](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/docs/html/index.html).
+<br />
+Run the following command in folder's root directory to generate new documentation
+```
+doxygen docs/doxygen_config.conf
+```
 
-## Standard install via command-line
+### Standard install via command-line
 ```
 sudo apt-get update
 sudo apt-get install libeigen3-dev
@@ -46,14 +51,8 @@ cd build
 cmake ..
 make
 ```
-#### Run main program
-```
-./app/shell-app
-```
-#### Run tests
-```
-./test/cpp-test
-```
+
+<br />
 
 ### Building for code coverage
 ```
@@ -64,30 +63,68 @@ make code_coverage
 ```
 This generates a index.html page in the build/coverage sub-directory that can be viewed locally in a web browser.
 
-#### Perform cppcheck
+<br />
+
+### Run main program
+ To run realtime tracking using camera, run following command 
+```
+./app/shell-app
+```
+ To run tracking on video, run following command by providing file path to the existing video file
+```
+./app/shell-app <file path>
+```
+
+<br />
+
+### Run tests
+```
+./test/cpp-test
+```
+
+<br />
+
+### cppcheck
 ```
 find ./app ./include ./test -iname  *.cpp -or -iname *.hpp | xargs cppcheck
 ```
+Existing results can be found in [/results/cppcheck_output.txt](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/cppcheck_output.txt)
 
-#### Perform cpplint
+<br />
+
+### cpplint
 ```
 find ./app ./include ./test -iname  *.cpp -or -iname *.hpp | xargs cpplint
 ```
+Existing results can be found in [/results/cpplint_output.txt](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/cpplint_output.txt)
+
+<br />
+
+### Valgrind memory leak check
+  Checked for memory leaks uing valgrind. No memory leaks found.
+  output can be found [here](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/results/valgrind_output.txt)
+
 ---
 
 ### UML Class Diagram
 <p align="center">
-  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/uml/revised/uml_v2.png" alt="UML Diagram" width="600"/>
+  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/uml/revised/uml_v2.png" alt="UML Diagram" width="600"/>
 </p>
 
 ---
 
 ### Activity Diagram
 <p align="center">
-  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/docs/activity_diagram.png" alt="ACTIVITY DIAGRAM" width="400"/>
+  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/docs/activity_diagram.png" alt="ACTIVITY DIAGRAM" width="400"/>
 </p>
 
 ---
+
+### Test Results
+Performed tests on 15 different images. Out of them 10 images were of humans and remaining 5 were of other objects.
+Detector output showed 80% accuracy with 2 false negatives and 1 false positive.
+[csv file](https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/test_results%20-%20Sheet1.csv)
+
 
 ### Video link
 - [Project Proposal Video](https://youtu.be/fk__0-6L_vQ)
