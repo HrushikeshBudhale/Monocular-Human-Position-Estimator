@@ -70,50 +70,74 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="Detector_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef INCLUDE_DETECTOR_HPP_</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define INCLUDE_DETECTOR_HPP_</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;opencv2/highgui/highgui.hpp&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;opencv2/objdetect/objdetect.hpp&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;opencv2/imgproc/imgproc.hpp&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// #include &lt;opencv2/videoio/videoio.hpp&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classDetector.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDetector.html">Detector</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classDetector.html#aa43b3d7bbd4b225855b4bcc93f70b225">Detector</a>();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">double</span> fps;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">double</span> focal_length, cx, cy;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDetector.html#afaafa16ecbfbc891456cb167ad6c98fc">set_camera_properties</a>(std::string);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDetector.html#a0a40504b36229ce49e58a6b49fe02513">set_detection_object</a>(cv::InputArray&amp;);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    cv::Mat <a class="code" href="classDetector.html#a1f9fef8e89e9ab84b265465f0a8285fc">detect_object</a>();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDetector.html#ab03122e5d92d191a87ae5fcba196b3bf">resize_bounding_box</a>(cv::Rect*);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    cv::Point2d <a class="code" href="classDetector.html#a830d131e313fb402297400bd8067a445">get_centroid</a>(cv::Rect);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    cv::Point2d <a class="code" href="classDetector.html#ad447befbce2ee537dd4557ea67c58892">get_x_and_y</a>(cv::Rect, <span class="keywordtype">double</span>);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::vector&lt;cv::Rect&gt; detections;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    cv::VideoCapture camera;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classDetector.html#ae16b7bf62f39cb287927d56ca17663d7">~Detector</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">Monocular Human Position Estimator</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">Copyright © 2021</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">Permission is hereby granted, free of charge, to any person obtaining a copy of</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">this software and associated documentation files (the &quot;Software&quot;), to deal in</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">the Software without restriction, including without limitation the rights to</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">of the Software, and to permit persons to whom the Software is furnished to do</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">so, subject to the following conditions:</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">copies or substantial portions of the Software.</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">SOFTWARE.</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#ifndef INCLUDE_DETECTOR_HPP_</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#define INCLUDE_DETECTOR_HPP_</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    cv::Mat frame;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    cv::HOGDescriptor hog_detector;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif  // INCLUDE_DETECTOR_HPP_</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &lt;opencv2/highgui/highgui.hpp&gt;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &lt;opencv2/objdetect/objdetect.hpp&gt;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &lt;opencv2/imgproc/imgproc.hpp&gt;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">// #include &lt;opencv2/videoio/videoio.hpp&gt;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classDetector.html">   49</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDetector.html">Detector</a> {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classDetector.html#aa43b3d7bbd4b225855b4bcc93f70b225">Detector</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">double</span> fps;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">double</span> focal_length, cx, cy;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDetector.html#afaafa16ecbfbc891456cb167ad6c98fc">set_camera_properties</a>(std::string);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDetector.html#a0a40504b36229ce49e58a6b49fe02513">set_detection_object</a>(cv::InputArray&amp;);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    cv::Mat <a class="code" href="classDetector.html#a1f9fef8e89e9ab84b265465f0a8285fc">detect_object</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDetector.html#ab03122e5d92d191a87ae5fcba196b3bf">resize_bounding_box</a>(cv::Rect*);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    cv::Point2d <a class="code" href="classDetector.html#a830d131e313fb402297400bd8067a445">get_centroid</a>(cv::Rect);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    cv::Point2d <a class="code" href="classDetector.html#ad447befbce2ee537dd4557ea67c58892">get_x_and_y</a>(cv::Rect, <span class="keywordtype">double</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::vector&lt;cv::Rect&gt; detections;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    cv::VideoCapture camera;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="classDetector.html#ae16b7bf62f39cb287927d56ca17663d7">~Detector</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    cv::Mat frame;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    cv::HOGDescriptor hog_detector;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif  // INCLUDE_DETECTOR_HPP_</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassDetector_html_ad447befbce2ee537dd4557ea67c58892"><div class="ttname"><a href="classDetector.html#ad447befbce2ee537dd4557ea67c58892">Detector::get_x_and_y</a></div><div class="ttdeci">cv::Point2d get_x_and_y(cv::Rect, double)</div><div class="ttdoc">Computes x and y co-ordinates of the object in the real world w.r.t camera frame.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:111</div></div>
-<div class="ttc" id="aclassDetector_html_ab03122e5d92d191a87ae5fcba196b3bf"><div class="ttname"><a href="classDetector.html#ab03122e5d92d191a87ae5fcba196b3bf">Detector::resize_bounding_box</a></div><div class="ttdeci">void resize_bounding_box(cv::Rect *)</div><div class="ttdoc">Resizes the bounding box.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:85</div></div>
-<div class="ttc" id="aclassDetector_html_a0a40504b36229ce49e58a6b49fe02513"><div class="ttname"><a href="classDetector.html#a0a40504b36229ce49e58a6b49fe02513">Detector::set_detection_object</a></div><div class="ttdeci">void set_detection_object(cv::InputArray &amp;)</div><div class="ttdoc">Sets the type of object to be detected.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:54</div></div>
-<div class="ttc" id="aclassDetector_html_a830d131e313fb402297400bd8067a445"><div class="ttname"><a href="classDetector.html#a830d131e313fb402297400bd8067a445">Detector::get_centroid</a></div><div class="ttdeci">cv::Point2d get_centroid(cv::Rect)</div><div class="ttdoc">Computes centroid of bounding box.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:97</div></div>
-<div class="ttc" id="aclassDetector_html_a1f9fef8e89e9ab84b265465f0a8285fc"><div class="ttname"><a href="classDetector.html#a1f9fef8e89e9ab84b265465f0a8285fc">Detector::detect_object</a></div><div class="ttdeci">cv::Mat detect_object()</div><div class="ttdoc">Updates frame by performing hog detection.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:63</div></div>
-<div class="ttc" id="aclassDetector_html_aa43b3d7bbd4b225855b4bcc93f70b225"><div class="ttname"><a href="classDetector.html#aa43b3d7bbd4b225855b4bcc93f70b225">Detector::Detector</a></div><div class="ttdeci">Detector()</div><div class="ttdoc">Default constructor for Detector.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:20</div></div>
-<div class="ttc" id="aclassDetector_html_ae16b7bf62f39cb287927d56ca17663d7"><div class="ttname"><a href="classDetector.html#ae16b7bf62f39cb287927d56ca17663d7">Detector::~Detector</a></div><div class="ttdeci">~Detector()</div><div class="ttdoc">Destructor for the Detector class.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:121</div></div>
-<div class="ttc" id="aclassDetector_html"><div class="ttname"><a href="classDetector.html">Detector</a></div><div class="ttdef"><b>Definition:</b> Detector.hpp:25</div></div>
-<div class="ttc" id="aclassDetector_html_afaafa16ecbfbc891456cb167ad6c98fc"><div class="ttname"><a href="classDetector.html#afaafa16ecbfbc891456cb167ad6c98fc">Detector::set_camera_properties</a></div><div class="ttdeci">void set_camera_properties(std::string)</div><div class="ttdoc">Sets camera source and frame parameters.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:31</div></div>
+<div class="ttc" id="aclassDetector_html_ad447befbce2ee537dd4557ea67c58892"><div class="ttname"><a href="classDetector.html#ad447befbce2ee537dd4557ea67c58892">Detector::get_x_and_y</a></div><div class="ttdeci">cv::Point2d get_x_and_y(cv::Rect, double)</div><div class="ttdoc">Computes x and y co-ordinates of the object in the real world w.r.t camera frame.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:135</div></div>
+<div class="ttc" id="aclassDetector_html_ab03122e5d92d191a87ae5fcba196b3bf"><div class="ttname"><a href="classDetector.html#ab03122e5d92d191a87ae5fcba196b3bf">Detector::resize_bounding_box</a></div><div class="ttdeci">void resize_bounding_box(cv::Rect *)</div><div class="ttdoc">Resizes the bounding box.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:109</div></div>
+<div class="ttc" id="aclassDetector_html_a0a40504b36229ce49e58a6b49fe02513"><div class="ttname"><a href="classDetector.html#a0a40504b36229ce49e58a6b49fe02513">Detector::set_detection_object</a></div><div class="ttdeci">void set_detection_object(cv::InputArray &amp;)</div><div class="ttdoc">Sets the type of object to be detected.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:78</div></div>
+<div class="ttc" id="aclassDetector_html_a830d131e313fb402297400bd8067a445"><div class="ttname"><a href="classDetector.html#a830d131e313fb402297400bd8067a445">Detector::get_centroid</a></div><div class="ttdeci">cv::Point2d get_centroid(cv::Rect)</div><div class="ttdoc">Computes centroid of bounding box.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:121</div></div>
+<div class="ttc" id="aclassDetector_html_a1f9fef8e89e9ab84b265465f0a8285fc"><div class="ttname"><a href="classDetector.html#a1f9fef8e89e9ab84b265465f0a8285fc">Detector::detect_object</a></div><div class="ttdeci">cv::Mat detect_object()</div><div class="ttdoc">Updates frame by performing hog detection.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:87</div></div>
+<div class="ttc" id="aclassDetector_html_aa43b3d7bbd4b225855b4bcc93f70b225"><div class="ttname"><a href="classDetector.html#aa43b3d7bbd4b225855b4bcc93f70b225">Detector::Detector</a></div><div class="ttdeci">Detector()</div><div class="ttdoc">Default constructor for Detector.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:44</div></div>
+<div class="ttc" id="aclassDetector_html_ae16b7bf62f39cb287927d56ca17663d7"><div class="ttname"><a href="classDetector.html#ae16b7bf62f39cb287927d56ca17663d7">Detector::~Detector</a></div><div class="ttdeci">~Detector()</div><div class="ttdoc">Destructor for the Detector class.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:145</div></div>
+<div class="ttc" id="aclassDetector_html"><div class="ttname"><a href="classDetector.html">Detector</a></div><div class="ttdef"><b>Definition:</b> Detector.hpp:49</div></div>
+<div class="ttc" id="aclassDetector_html_afaafa16ecbfbc891456cb167ad6c98fc"><div class="ttname"><a href="classDetector.html#afaafa16ecbfbc891456cb167ad6c98fc">Detector::set_camera_properties</a></div><div class="ttdeci">void set_camera_properties(std::string)</div><div class="ttdoc">Sets camera source and frame parameters.</div><div class="ttdef"><b>Definition:</b> Detector.cpp:55</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
