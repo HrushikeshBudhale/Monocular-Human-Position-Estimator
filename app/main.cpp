@@ -40,6 +40,7 @@ SOFTWARE.
 
 int main(int argc, char *argv[]) {
     auto transformer = PoseTransformer();
+    transformer.set_cam_frame({0, 0, 0.5, -M_PI/2, M_PI/2, 0});
     auto human_detector = HumanDetector((argc == 2) ? argv[1] : "");
     bool show = true;
     int id;
@@ -53,7 +54,7 @@ int main(int argc, char *argv[]) {
                                                        position.y,
                                                        position.z});
             std::printf("ID: %d  \tX: %.2f  \tY: %.2f  \tZ: %.2f\n",
-                                    id, position.x, position.y, position.z);
+                                    id, pos[0], pos[1], pos[2]);
             id++;
         }
     }
