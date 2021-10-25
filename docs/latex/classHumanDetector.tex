@@ -1,0 +1,70 @@
+\hypertarget{classHumanDetector}{}\doxysection{Human\+Detector Class Reference}
+\label{classHumanDetector}\index{HumanDetector@{HumanDetector}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHumanDetector_a53dbe50b8a4f11dd23335d32e3d741c2}\label{classHumanDetector_a53dbe50b8a4f11dd23335d32e3d741c2}} 
+\mbox{\hyperlink{classHumanDetector_a53dbe50b8a4f11dd23335d32e3d741c2}{Human\+Detector}} (std\+::string)
+\begin{DoxyCompactList}\small\item\em Default Constructor for Human \mbox{\hyperlink{classDetector}{Detector}} class. \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Point3d $>$ \mbox{\hyperlink{classHumanDetector_a30fcf34705f083e7e6627122b04e0e47}{track\+\_\+positions}} ()
+\begin{DoxyCompactList}\small\item\em Tracks detected humans and assign ids. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHumanDetector_ac336d54476f7ff8726da227547d32907}{show\+\_\+output}} ()
+\begin{DoxyCompactList}\small\item\em Displays colored bounding boxes on an image/video feed. \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Point3d $>$ \mbox{\hyperlink{classHumanDetector_aee03655b4d00ae00ba0cc453889328d2}{get\+\_\+3d\+\_\+positions}} ()
+\begin{DoxyCompactList}\small\item\em Computes 3D position of detected humans by calculating the estimated distance between the object and the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHumanDetector_a4de6f5b65ed4efae3632dd22888cc095}\label{classHumanDetector_a4de6f5b65ed4efae3632dd22888cc095}} 
+double {\bfseries avg\+\_\+human\+\_\+height}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHumanDetector_aee03655b4d00ae00ba0cc453889328d2}\label{classHumanDetector_aee03655b4d00ae00ba0cc453889328d2}} 
+\index{HumanDetector@{HumanDetector}!get\_3d\_positions@{get\_3d\_positions}}
+\index{get\_3d\_positions@{get\_3d\_positions}!HumanDetector@{HumanDetector}}
+\doxysubsubsection{\texorpdfstring{get\_3d\_positions()}{get\_3d\_positions()}}
+{\footnotesize\ttfamily std\+::vector$<$ cv\+::\+Point3d $>$ Human\+Detector\+::get\+\_\+3d\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Computes 3D position of detected humans by calculating the estimated distance between the object and the camera. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$cv\+::\+Point3d$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHumanDetector_ac336d54476f7ff8726da227547d32907}\label{classHumanDetector_ac336d54476f7ff8726da227547d32907}} 
+\index{HumanDetector@{HumanDetector}!show\_output@{show\_output}}
+\index{show\_output@{show\_output}!HumanDetector@{HumanDetector}}
+\doxysubsubsection{\texorpdfstring{show\_output()}{show\_output()}}
+{\footnotesize\ttfamily bool Human\+Detector\+::show\+\_\+output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays colored bounding boxes on an image/video feed. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHumanDetector_a30fcf34705f083e7e6627122b04e0e47}\label{classHumanDetector_a30fcf34705f083e7e6627122b04e0e47}} 
+\index{HumanDetector@{HumanDetector}!track\_positions@{track\_positions}}
+\index{track\_positions@{track\_positions}!HumanDetector@{HumanDetector}}
+\doxysubsubsection{\texorpdfstring{track\_positions()}{track\_positions()}}
+{\footnotesize\ttfamily std\+::vector$<$ cv\+::\+Point3d $>$ Human\+Detector\+::track\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tracks detected humans and assign ids. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$cv\+::\+Point3d$>$ 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{HumanDetector_8hpp}{Human\+Detector.\+hpp}}\item 
+app/\mbox{\hyperlink{HumanDetector_8cpp}{Human\+Detector.\+cpp}}\end{DoxyCompactItemize}

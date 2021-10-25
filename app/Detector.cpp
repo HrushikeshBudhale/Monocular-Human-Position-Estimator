@@ -1,13 +1,38 @@
 /**
  * @file Detector.cpp
- * @author Driver: Abhijit Mahalle, Navigator: Hrushikesh Budhale
- * @brief library for Detector class
+ * @author Driver: Hrushikesh Budhale, Navigator: Abhijit Mahalle
+ * @brief Library for Detector class
+ *        Class that detects object of type defined by the user.
  * @version 0.1
  * @date 2021-10-14
  * 
  * @copyright Copyright (c) 2021
  * 
  */
+
+/*
+Monocular Human Position Estimator
+
+Copyright © 2021
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 
 #include "../include/Detector.hpp"
 #include "iostream"
@@ -17,96 +42,63 @@
  * 
  */
 Detector::Detector() {
-    camera = cv::VideoCapture();
-    camera.open(0);
-    fps = camera.get(CV_CAP_PROP_FPS);
-    hog_detector.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
+    cx = 640.0 / 2.0;
+    cy = 480.0 / 2.0;
+    focal_length = cx;
 }
 
 /**
- * @brief Explicit constructor for Detector
- * @param camera_id int : camera id
- */
-Detector::Detector(int camera_id) {
-    camera = cv::VideoCapture();
-    camera.open(camera_id);
-    fps = camera.get(CV_CAP_PROP_FPS);
-    hog_detector.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
-}
-
-/**
- * @brief Constructor for a pre-recorded video stored in a file_path
+ * @brief Sets camera source and frame parameters
  * 
- * @param file_path 
+ * @param source <string> file path
  */
-Detector::Detector(std::string file_path) {
-    cv::VideoCapture camera = cv::VideoCapture();
-    camera.open(file_path);
-    fps = camera.get(CV_CAP_PROP_FPS);
-    hog_detector.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
+void Detector::set_camera_properties(std::string source) {
+    // cv::VideoCapture camera = cv::VideoCapture();
+    if (source.size() < 1) {
+        camera = cv::VideoCapture();
+        camera.open(0);
+    } else if (source.substr(source.size()-4) == ".jpg") {
+        camera = cv::VideoCapture(source, cv::CAP_IMAGES);
+        camera.open(source);
+    } else {
+        camera = cv::VideoCapture(source);
+        camera.open(source);
+    }
+    fps = camera.get(cv::CAP_PROP_FPS);
+    cx = 640.0 / 2.0;
+    cy = 480.0 / 2.0;
+    focal_length = cx;
 }
 
 /**
- * @brief Updates private member like detections and frame by performing
- *        hog detection.
+ * @brief Sets the type of object to be detected.
  * 
+ * @param svm_detector descriptor of type cv::HOGDescriptor
  */
-void Detector::detect_humans() {
+void Detector::set_detection_object(cv::InputArray& svm_detector) {
+    hog_detector.setSVMDetector(svm_detector);
+}
+
+/**
+ * @brief Updates frame by performing hog detection.
+ * 
+ * @return cv::Mat Returns updated frame from camera
+ */
+cv::Mat Detector::detect_object() {
     if (!camera.isOpened()) {
         std::cout << "Cannot open the source. \n";
-        return;
+        return frame;
     }
     if (!camera.read(frame)) {
         std::cout << "\n Cannot read the frame. \n";
-        return;
+        return frame;
     }
-
+    cv::resize(frame, frame, cv::Size(640, 480));
     hog_detector.detectMultiScale(frame, detections);
-}
-
-/**
- * @brief Function that returns list of bounding boxes
- * 
- * @return std::vector<cv::Rect> 
- */
-std::vector<cv::Rect> Detector::get_detections() {
-    return detections;
-}
-
-/**
- * @brief Function to compute centroid of bounding boxes
- * 
- * @return std::vector<cv::Point2d> 
- */
-std::vector<cv::Point2d> Detector::get_centroid() {
-    std::vector<cv::Point2d> points;
-    for (auto& detection : detections) {
-        points.push_back(cv::Point2d(detection.x + (detection.width/2),
-                               detection.y + (detection.height/2)));
-    }
-    return points;
-}
-
-/**
- * @brief Functions that displays output
- * 
- * @return true 
- * @return false 
- */
-bool Detector::show_output() {
-    bool keep_showing = true;
     for (auto& detection : detections) {
         resize_bounding_box(&detection);
-        cv::rectangle(frame, detection.tl(), detection.br(),
-                        cv::Scalar(255, 0, 0), 2);
     }
-    cv::imshow("Frame1", frame);
-    int key = cv::waitKey(static_cast<int>(1000.0/fps));
-    if (key == 27 || static_cast<char>(key) == 'q') {
-        cv::destroyAllWindows();
-        keep_showing = false;
-    }
-    return keep_showing;
+    return frame;
 }
 
 /**
@@ -115,12 +107,41 @@ bool Detector::show_output() {
  * @param boxPtr Pointer to cv::Rect object created after detections
  */
 void Detector::resize_bounding_box(cv::Rect* boxPtr) {
-    boxPtr->x += static_cast<int>(boxPtr->width*0.15);
-    boxPtr->width = static_cast<int>(boxPtr->width*0.7);
-    boxPtr->y += static_cast<int>(boxPtr->height*0.1);
-    boxPtr->height = static_cast<int>(boxPtr->height*0.8);
+    boxPtr->x += static_cast<int>(boxPtr->width*0.2);
+    boxPtr->width = static_cast<int>(boxPtr->width*0.6);
+    boxPtr->y += static_cast<int>(boxPtr->height*0.05);
+    boxPtr->height = static_cast<int>(boxPtr->height*0.85);
 }
 
+/**
+ * @brief Computes centroid of bounding box.
+ * 
+ * @return std::vector<cv::Point2d> 
+ */
+cv::Point2d Detector::get_centroid(cv::Rect detection) {
+    auto centroid = cv::Point2d(detection.x + (detection.width/2.0),
+                               detection.y + (detection.height/2.0));
+    return centroid;
+}
+
+/**
+ * @brief Computes x and y co-ordinates of the object in the real world w.r.t camera frame.
+ * 
+ * @param detection Resized detections
+ * @param z_distance Distance between the object and the camera.
+ *
+ * @return std::vector<cv::Point2d>  
+ */
+cv::Point2d Detector::get_x_and_y(cv::Rect detection, double z_distance) {
+    auto centroid = Detector::get_centroid(detection);
+    double x_real = (centroid.x - cx) * z_distance / focal_length;
+    double y_real = (centroid.y - cy) * z_distance / focal_length;
+    return cv::Point2d(x_real, y_real);
+}
+
+/**
+ * @brief Destructor for the Detector class
+ */
 Detector::~Detector() {
     camera.release();
 }
