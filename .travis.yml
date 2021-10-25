@@ -1,6 +1,6 @@
 # We need a decent ubuntu distro
 sudo: required
-dist: xenial
+dist: Bionic
 
 # Modern cpp settings from
 #  http://genbattle.bitbucket.org/blog/2016/01/17/c++-travis-ci/
@@ -13,7 +13,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - george-edison55-precise-backports
+#             - george-edison55-precise-backports
           packages:
             - g++-5
             - cmake
@@ -25,9 +25,9 @@ before_install:
 install:
   - sudo apt-get install -y -qq lcov
   - sudo apt-get install -y libeigen3-dev
-  - sudo add-apt-repository -f ppa:alfonsosanchezbeato/opencv-tracking 
-  - sudo apt-get install libopencv-contrib-dev
   - sudo apt-get install libopencv-dev
+  - sudo add-apt-repository -y ppa:alfonsosanchezbeato/opencv-tracking 
+  - sudo apt-get install libopencv-contrib-dev
 script:
   - export CXX=$COMPILER;
   - mkdir build
@@ -38,7 +38,7 @@ script:
   - test/cpp-test
 
 after_success:
-  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
+  - coveralls --root .. --exclude app/main.cpp --exclude build/CMakeFiles/
 
 notifications:
   email: false

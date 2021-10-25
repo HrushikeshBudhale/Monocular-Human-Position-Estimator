@@ -67,6 +67,7 @@ void HumanDetector::create_colors() {
  * @brief Gets color as per the index passed
  * @param index 
  */
+// LCOV_EXCL_START
 cv::Scalar HumanDetector::get_color(int index) {
     if (index > static_cast<int>(colors.size())) {
         cv::Scalar color(
@@ -77,7 +78,7 @@ cv::Scalar HumanDetector::get_color(int index) {
     }
     return colors[index];
 }
-
+// LCOV_EXCL_STOP
 /**
  * @brief Computes 3D position of detected humans by calculating the estimated distance 
  * between the object and the camera.
@@ -187,6 +188,7 @@ std::vector<cv::Point3d> HumanDetector::track_positions() {
  * @return true 
  * @return false 
  */
+// LCOV_EXCL_START
 bool HumanDetector::show_output() {
     bool keep_showing = true;
     cv::namedWindow("Frame1");
@@ -215,3 +217,4 @@ bool HumanDetector::show_output() {
     }
     return keep_showing;
 }
+// LCOV_EXCL_STOP
