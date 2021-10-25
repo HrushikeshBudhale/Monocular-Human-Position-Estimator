@@ -74,7 +74,7 @@ TEST(Test_Detector, get_x_and_y_test) {
 
 TEST(Test_Detector, detect_object_test) {
     Detector detector = Detector();
-    detector.set_camera_properties("../1_person.jpg");
+    detector.set_camera_properties("../docs/1_person.jpg");
     detector.set_detection_object(cv::
             HOGDescriptor::getDefaultPeopleDetector());
     detector.detect_object();
