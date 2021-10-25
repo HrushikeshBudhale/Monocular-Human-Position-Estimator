@@ -82,23 +82,25 @@ Risks and Mitigation</h2>
  <h2><a class="anchor" id="autotoc_md4"></a>
 &lt;a href="https://docs.google.com/spreadsheets/d/1KF9aKQJTfanBHgDmTPipmk2IF8u1touHpT6VdUuIId4/edit?usp=sharing"&gt;Product Backlog&lt;/a&gt;</h2>
 <h2><a class="anchor" id="autotoc_md5"></a>
+&lt;a href="https://docs.google.com/document/d/1Ov0n0FiRoefbuTpbJCGnaQuJ2t1R9MHB2j_GyZQ0szY/edit?usp=sharing"&gt;Sprint planning notes&lt;/a&gt;</h2>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Deliverables</h2>
 <ul>
 <li>Developer level documentation using doxygen</li>
 <li>Build status using travis CI</li>
-<li>Code coverage using coveralls.</li>
+<li>Code coverage using coveralls</li>
 <li>Accurate implementation using generated test cases in gtest</li>
 <li>Steps showing how to build the repository</li>
-<li>Steps showing how to run test and demo applications.</li>
+<li>Steps showing how to run test and demo applications</li>
 <li>Steps showing how to generate Doxygen documentation</li>
-<li>Known Issues/bugs in the code</li>
+<li>Valgrind output for memory leak ceck</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md6"></a>
-Issues and Bugs</h3>
-<h1><a class="anchor" id="autotoc_md7"></a>
-- No issues or bugs have been encountered yet</h1>
-<h1><a class="anchor" id="autotoc_md8"></a>
-Standard install via command-line</h1>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Documentation</h2>
+<p>Doxygen generated documentation can be found <a href="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/docs/html/index.html">here</a>. <br  />
+ Run the following command in folder's root directory to generate new documentation </p><div class="fragment"><div class="line">doxygen docs/doxygen_config.conf</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
+Standard install via command-line</h2>
 <div class="fragment"><div class="line">sudo apt-get update</div>
 <div class="line">sudo apt-get install libeigen3-dev</div>
 <div class="line">sudo apt-get install libopencv-dev</div>
@@ -108,41 +110,62 @@ Standard install via command-line</h1>
 <div class="line">cd build</div>
 <div class="line">cmake ..</div>
 <div class="line">make</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md9"></a>
-Run main program</h3>
-<div class="fragment"><div class="line">./app/shell-app</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md10"></a>
-Run tests</h3>
-<div class="fragment"><div class="line">./test/cpp-test</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
+</div><!-- fragment --><p><br  />
+</p>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Building for code coverage</h2>
 <div class="fragment"><div class="line">sudo apt-get install lcov</div>
 <div class="line">cmake -D COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug ../</div>
 <div class="line">make</div>
 <div class="line">make code_coverage</div>
 </div><!-- fragment --><p>This generates a index.html page in the build/coverage sub-directory that can be viewed locally in a web browser.</p>
-<h3><a class="anchor" id="autotoc_md12"></a>
-Perform cppcheck</h3>
+<p><br  />
+</p>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Run main program</h2>
+<p>To run realtime tracking using camera, run following command </p><div class="fragment"><div class="line">./app/shell-app</div>
+</div><!-- fragment --><p>To run tracking on video, run following command by providing file path to the existing video file </p><div class="fragment"><div class="line">./app/shell-app &lt;file path&gt;</div>
+</div><!-- fragment --><p><br  />
+</p>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Run tests</h2>
+<div class="fragment"><div class="line">./test/cpp-test</div>
+</div><!-- fragment --><p><br  />
+</p>
+<h2><a class="anchor" id="autotoc_md12"></a>
+cppcheck</h2>
 <div class="fragment"><div class="line">find ./app ./include ./test -iname  *.cpp -or -iname *.hpp | xargs cppcheck</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md13"></a>
-Perform cpplint</h3>
+</div><!-- fragment --><p>Existing results can be found in <a href="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/cppcheck_output.txt">/results/cppcheck_output.txt</a></p>
+<p><br  />
+</p>
+<h2><a class="anchor" id="autotoc_md13"></a>
+cpplint</h2>
 <div class="fragment"><div class="line">find ./app ./include ./test -iname  *.cpp -or -iname *.hpp | xargs cpplint</div>
-</div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><p>Existing results can be found in <a href="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/cpplint_output.txt">/results/cpplint_output.txt</a></p>
+<p><br  />
+</p>
+<h2><a class="anchor" id="autotoc_md14"></a>
+Valgrind memory leak check</h2>
+<p>Checked for memory leaks uing valgrind. No memory leaks found. output can be found <a href="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/results/valgrind_output.txt">here</a></p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md16"></a>
 UML Class Diagram</h2>
-<p><img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/uml/revised/uml_v2.png" alt="UML Diagram" width="600" class="inline"/> </p>
+<p><img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/uml/revised/uml_v2.png" alt="UML Diagram" width="600" class="inline"/> </p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 Activity Diagram</h2>
-<p><img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/docs/activity_diagram.png" alt="ACTIVITY DIAGRAM" width="400" class="inline"/> </p>
+<p><img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/development/docs/activity_diagram.png" alt="ACTIVITY DIAGRAM" width="400" class="inline"/> </p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
+Test Results</h2>
+<p>Performed tests on 15 different images. Out of them 10 images were of humans and remaining 5 were of other objects. <a class="el" href="classDetector.html">Detector</a> output showed 80% accuracy with 2 false negatives and 1 false positive. <a href="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/test_results%20-%20Sheet1.csv">csv file</a></p>
+<h2><a class="anchor" id="autotoc_md21"></a>
 Video link</h2>
 <ul>
 <li><a href="https://youtu.be/fk__0-6L_vQ">Project Proposal Video</a></li>
 <li><a href="https://youtu.be/0RSSTZF7N8k">Phase1 Demo</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md20"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 External Dependencies</h2>
 <ul>
 <li><a href="https://github.com/opencv/opencv">Opencv</a></li>
