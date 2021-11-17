@@ -12,10 +12,6 @@ The scope of this project is to develop a software that detects and tracks one o
   
 Detailed developer level documentation and installation steps have been created for new developers to contribute and use it with ease. This project ensures it’s correctness by testing every class on multiple unit tests created in the gtest suite. Latest build status and code coverage tests are performed in continuous integration with the help of travis and coverall. To ensure implementation accuracy each class has been developed by unit testing it on multiple test cases using the gtest suite.
 
-<p align="center">
-  <img src="https://github.com/HrushikeshBudhale/Monocular-Human-Position-Estimator/blob/main/results/sample.gif" alt="Sample output" width="400"/>
-</p>
-
 ### Risks and Mitigation
  1. For detecting humans, HOG descriptor has been used which is not a state of the art detector and performs poorly in unevenly lit frames, it also fails to detect humans properly in poses other than standing pose like sitting, lying, bending positions. Detection performance can be improved by using new human detections techniques using neural networks.
  2. Implemented tracker does not account for 2 humans crossing each other and can result in change the id assigned to humans on such events. Improved results can be obtained by properly estimating depth of each person from camera and using the knowledge from previous tracker output.
@@ -137,11 +133,6 @@ Existing results can be found in [/results/cpplint_output.txt](https://github.co
  Source: PennFudanPed dataset
 
 The developed software is only able to detect humans that are facing towards or away from the camera. The detections algorithm does not detect humans who are beyond 6 meters from camera. Detection works properly if there is color contrast between humans and background. Occluded humans and humans standing near each other in the frame does not get detected properly. Tracker algorithm fails to keep track of humans crossing each other. Since the algorithm considers average human height in USA of 1.68 meter, the distance estimation fails to give correct output on people with different heights.
-
-
-### Video link
-- [Project Proposal Video](https://youtu.be/fk__0-6L_vQ)
-- [Phase1 Demo](https://youtu.be/0RSSTZF7N8k)
 
 ### External Dependencies
 - [Opencv](https://github.com/opencv/opencv)
