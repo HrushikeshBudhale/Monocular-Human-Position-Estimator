@@ -29,3 +29,17 @@ class MockDetector : public Detector {
     MOCK_METHOD2(get_x_and_y, cv::Point2d(cv::Rect, double));
 };
 
+TEST(MockTest_Detector, test_constructor) {
+    // Arrange
+    MockDetector md;
+
+    // Assert
+    EXPECT_CALL(md, set_camera_properties(_))
+    .Times(1);
+
+    EXPECT_CALL(md, set_detection_object(_))
+    .Times(1);
+
+    // Act
+    auto human_detector = HumanDetector("../docs/1_person.jpg", &md);
+}
