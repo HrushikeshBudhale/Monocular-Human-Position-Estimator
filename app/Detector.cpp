@@ -45,6 +45,7 @@ Detector::Detector() {
     cx = 640.0 / 2.0;
     cy = 480.0 / 2.0;
     focal_length = cx;
+    fps = 25;
 }
 
 /**
