@@ -43,3 +43,16 @@ TEST(MockTest_Detector, test_constructor) {
     // Act
     auto human_detector = HumanDetector("../docs/1_person.jpg", &md);
 }
+
+TEST(MockTest_Detector, test_track_detection) {
+    // Arrange
+    MockDetector md;
+
+    // Assert
+    EXPECT_CALL(md, detect_object())
+    .Times(1);
+
+    // Act
+    auto human_detector = HumanDetector("../docs/1_person.jpg", &md);
+    human_detector.track_positions();
+}
