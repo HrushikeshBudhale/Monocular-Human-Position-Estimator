@@ -83,6 +83,15 @@ This generates a index.html page in the build/coverage sub-directory that can be
 <br />
 
 ### Run tests
+
+To run mock tests switch to 'GMock_Extra_Credit' branch using following command 
+```
+git checkout GMock_Extra_Credit
+```
+As Detector class is a component of HumanDetector class (composition relationship), Detector class has been mocked and is getting tested using gmock framework.
+The mock tests for detector class can be found in /test/Detector_mock.cpp file.
+
+To run all the tests including mock run following command in /build folder of this repository.
 ```
 ./test/cpp-test
 ```
@@ -137,3 +146,5 @@ The developed software is only able to detect humans that are facing towards or 
 ### External Dependencies
 - [Opencv](https://github.com/opencv/opencv)
 - [Eigen3](https://eigen.tuxfamily.org/index.php?title=Main_Page)
+- [gtest](http://google.github.io/googletest/gmock_cook_book.html)
+- [gmock](http://google.github.io/googletest/gmock_cook_book.html)
