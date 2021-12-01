@@ -43,7 +43,7 @@ SOFTWARE.
 
 class HumanDetector {
  public:
-    explicit HumanDetector(std::string);
+    explicit HumanDetector(std::string, Detector* detector);
     std::vector<cv::Point3d> track_positions();
     bool show_output();
     std::vector<cv::Point3d> get_3d_positions();
@@ -52,7 +52,7 @@ class HumanDetector {
  private:
     int tracking_edge;
     double max_tracking_distance;
-    Detector detector;
+    Detector* detector;
     cv::Mat frame;
     std::vector<cv::Scalar> colors;
     std::vector<cv::Point3d> detected_humans;  // positions
