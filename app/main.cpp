@@ -37,11 +37,13 @@ SOFTWARE.
 #include <iostream>
 #include "../include/PoseTransformer.hpp"
 #include "../include/HumanDetector.hpp"
+#include "../include/Detector.hpp"
 
 int main(int argc, char *argv[]) {
     auto transformer = PoseTransformer();
+    auto detector = Detector();
     transformer.set_cam_frame({0, 0, 0.5, -M_PI/2, M_PI/2, 0});
-    auto human_detector = HumanDetector((argc == 2) ? argv[1] : "");
+    auto human_detector = HumanDetector((argc == 2) ? argv[1] : "", &detector);
     bool show = true;
     int id;
     std::vector<double> pos;
