@@ -51,15 +51,15 @@ class Detector {
     Detector();
     double fps;
     double focal_length, cx, cy;
-    void set_camera_properties(std::string);
-    void set_detection_object(cv::InputArray&);
-    cv::Mat detect_object();
-    void resize_bounding_box(cv::Rect*);
-    cv::Point2d get_centroid(cv::Rect);
-    cv::Point2d get_x_and_y(cv::Rect, double);
+    virtual void set_camera_properties(std::string);
+    virtual void set_detection_object(cv::InputArray&);
+    virtual cv::Mat detect_object();
+    virtual void resize_bounding_box(cv::Rect*);
+    virtual cv::Point2d get_centroid(cv::Rect);
+    virtual cv::Point2d get_x_and_y(cv::Rect, double);
     std::vector<cv::Rect> detections;
     cv::VideoCapture camera;
-    ~Detector();
+    virtual ~Detector();
 
  private:
     cv::Mat frame;
