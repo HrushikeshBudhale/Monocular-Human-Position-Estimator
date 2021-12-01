@@ -41,6 +41,10 @@ SOFTWARE.
 using ::testing::AtLeast;
 using ::testing::_;
 
+/**
+ * @brief Mock of Detector class
+ * 
+ */
 class MockDetector : public Detector {
  public:
     MOCK_METHOD1(set_camera_properties, void(std::string));
@@ -51,6 +55,10 @@ class MockDetector : public Detector {
     MOCK_METHOD2(get_x_and_y, cv::Point2d(cv::Rect, double));
 };
 
+/**
+ * @brief Tests call to Detectors object methods in constructor of HumanDetector
+ * 
+ */
 TEST(MockTest_Detector, test_constructor) {
     // Arrange
     MockDetector md;
@@ -66,6 +74,11 @@ TEST(MockTest_Detector, test_constructor) {
     auto human_detector = HumanDetector("../docs/1_person.jpg", &md);
 }
 
+/**
+ * @brief Tests call to track_positions in Detector when detect_object method
+ *          of HumanDetector call is called
+ * 
+ */
 TEST(MockTest_Detector, test_track_detection) {
     // Arrange
     MockDetector md;
