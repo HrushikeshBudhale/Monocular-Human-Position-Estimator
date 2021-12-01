@@ -39,10 +39,11 @@ SOFTWARE.
 /**
  * @brief Default Constructor for Human Detector class
  */
-HumanDetector::HumanDetector(std::string source) {
-    detector.set_detection_object(cv::HOGDescriptor::
+HumanDetector::HumanDetector(std::string source, Detector* detector) :
+                                                        detector(detector) {
+    detector->set_detection_object(cv::HOGDescriptor::
                                     getDefaultPeopleDetector());
-    detector.set_camera_properties(source);
+    detector->set_camera_properties(source);
     avg_human_height = 1.62;     // meter
     max_tracking_distance = 6;   // meter
     tracking_edge = 20;          // pixel
@@ -86,14 +87,14 @@ cv::Scalar HumanDetector::get_color(int index) {
  */
 std::vector<cv::Point3d> HumanDetector::get_3d_positions() {
     std::vector<cv::Point3d> positions_3d;
-    for (auto it = detector.detections.begin();
-              it != detector.detections.end();) {
-        double distance_z = avg_human_height * (detector.cy*2) / (*it).height;
+    for (auto it = detector->detections.begin();
+              it != detector->detections.end();) {
+        double distance_z = avg_human_height * (detector->cy*2) / (*it).height;
         if (distance_z > max_tracking_distance) {
-            it = detector.detections.erase(it);
+            it = detector->detections.erase(it);
             continue;
         } else {
-            auto position = detector.get_x_and_y(*it, distance_z);
+            auto position = detector->get_x_and_y(*it, distance_z);
             positions_3d.push_back(cv::Point3d(position.x,
                                                position.y, distance_z));
             it++;
@@ -109,7 +110,7 @@ std::vector<cv::Point3d> HumanDetector::get_3d_positions() {
  * @return std::vector<cv::Point3d> 
  */
 std::vector<cv::Point3d> HumanDetector::track_positions() {
-    frame = detector.detect_object();
+    frame = detector->detect_object();
     detected_humans = get_3d_positions();
     bool found;
 
@@ -127,14 +128,14 @@ std::vector<cv::Point3d> HumanDetector::track_positions() {
         }
     }
 
-    for (auto& detection : detector.detections) {
+    for (auto& detection : detector->detections) {
         found = false;
-        auto detection_bb = detector.get_x_and_y(detection, 2);
+        auto detection_bb = detector->get_x_and_y(detection, 2);
         for (int i = 0; i < static_cast<int>(trackers.size()); i++) {
             // set found = true, if tracker_bb is near detection_bb
             auto bb = cv::Rect(trackings[i].x, trackings[i].y,
                                trackings[i].width, trackings[i].height);
-            auto tracking_bb = detector.get_x_and_y(bb, 2);
+            auto tracking_bb = detector->get_x_and_y(bb, 2);
             if (cv::norm(detection_bb - tracking_bb) < 0.2) {
                 found = true;
                 skipped_detections[i] = 0;
@@ -168,8 +169,8 @@ std::vector<cv::Point3d> HumanDetector::track_positions() {
         if (left < tracking_edge
             || skipped_detections[i] > 10
             || top < tracking_edge
-            || right > (detector.cx*2 - tracking_edge)
-            || down > (detector.cy*2 - tracking_edge)) {
+            || right > (detector->cx*2 - tracking_edge)
+            || down > (detector->cy*2 - tracking_edge)) {
             trackers.erase(trackers.begin()+i);
             trackings.erase(trackings.begin()+i);
             skipped_detections.erase(skipped_detections.begin()+i);
@@ -193,13 +194,13 @@ bool HumanDetector::show_output() {
     bool keep_showing = true;
     cv::namedWindow("Frame1");
     int i = 0;
-    // std::cout << detector.detections.size() << ", " << trackings.size()
+    // std::cout << detector->detections.size() << ", " << trackings.size()
     //                  << std::endl;
-    for (auto& detection : detector.detections) {
+    for (auto& detection : detector->detections) {
         cv::rectangle(frame, detection.tl(),
                              detection.br(),
                              get_color(2), 2);
-        auto centroid = detector.get_centroid(cv::Rect2d(trackings[i].x,
+        auto centroid = detector->get_centroid(cv::Rect2d(trackings[i].x,
                                          trackings[i].y,
                                          trackings[i].width,
                                          trackings[i].height));
@@ -210,7 +211,7 @@ bool HumanDetector::show_output() {
     }
 
     cv::imshow("Frame1", frame);
-    int key = cv::waitKey(static_cast<int>(1000.0 / detector.fps));
+    int key = cv::waitKey(static_cast<int>(1000.0 / detector->fps));
     if (key == 27 || static_cast<char>(key) == 'q') {
         cv::destroyAllWindows();
         keep_showing = false;
